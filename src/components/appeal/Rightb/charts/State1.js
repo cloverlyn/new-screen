@@ -1,242 +1,158 @@
 import React, { useState, useEffect } from 'react';
 import Circle from './Circle1';
 import ReactEcharts from 'echarts-for-react';
-import echarts from 'echarts/lib/echarts';
 import imgUrl from '@/assets/dataicon.png';
 import styles from './../index.scss';
 import { connect } from 'react-redux';
 
-//export default function(props) {
-function TimeHandle(props) {
-  const { TimeHandle, partName } = props;
-  const [options, setOptions] = useState({});
-
-  useEffect(() => {
+class TimeHandle extends React.Component {
+  get options() {
+    const { TimeHandle } = this.props;
     if (TimeHandle) {
-      //var data = ["95","5"]
-      const name = TimeHandle.map(item => {
-        return item.deptName;
-      });
-      const total = TimeHandle.map(item => {
-        return item.total;
-      });
-      const onlineCount = TimeHandle.map(item => {
-        return item.onlineCount;
-      });
-      const distributeCount = TimeHandle.map(item => {
-        return item.distributeCount;
-      });
-      const distributeFinish = TimeHandle.map(item => {
-        return item.distributeFinish;
-      });
-      setOptions({
-        legend: {
-          top:0,
-          textStyle: {
-            color: '#00eaff',
-            fontSize:18
-          },
-          data: ['总工单数', '在线办结工单数','转办工单数','转办办结工单数']
-        },
+      return {
+        tooltip: {},
         grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '10%',
-          containLabel: true
+          top: '8%',
+          left: '1%',
+          right: '1%',
+          bottom: '8%',
+          containLabel: true,
         },
-
-        tooltip: {
-          show: "true",
-          trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-          }
-        },
-        yAxis: {
-          type: 'value',
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false,
-            lineStyle: {
-              color: '#00eaff',
-            }
-          },
-          axisLabel:{
-            textStyle:{
-              fontSize: 18
-            }
-          },
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: '#aaa',
-            }
+        legend: {
+          itemGap: 50,
+          data: ['工单总量', '办结工单量'],
+          textStyle: {
+            color: '#f9f9f9',
+            borderColor: '#fff',
+            fontSize: 20,
           },
         },
         xAxis: [{
           type: 'category',
-          axisTick: {
-            show: false
-          },
-          axisLine: {
+          boundaryGap: true,
+          axisLine: { //坐标轴轴线相关设置。数学上的x轴
             show: true,
             lineStyle: {
-              color: '#00eaff',
-            }
+              color: '#f9f9f9'
+            },
           },
-          axisLabel:{
-            rotate:40,
-            textStyle:{
-              fontSize: 18
-            }
-          },
-          data: name
-          //data: inTimeHandleFinish.map(item => {
-          // return item.deptName;
-          //}),
-        }, {
-          type: 'category',
-          axisLine: {
-            show: false
+          axisLabel: { //坐标轴刻度标签的相关设置
+            textStyle: {
+              color: '#d1e6eb',
+              margin: 15,
+              fontSize: 20,
+            },
           },
           axisTick: {
-            show: false
+            show: false,
+          },
+          data: ['街道1', '街道2', '街道3', '街道4', '街道5', '街道6', '街道7',],
+        }],
+        yAxis: [{
+          type: 'value',
+          min: 0,
+          // max: 140,
+          splitNumber: 7,
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#0a3256'
+            }
+          },
+          axisLine: {
+            show: false,
           },
           axisLabel: {
-            show: false
-          },
-          splitArea: {
-            show: false
-          },
-          splitLine: {
-            show: false
-          },
-          data: name
-        },
+            margin: 20,
+            textStyle: {
+              color: '#d1e6eb',
 
-        ],
+            },
+          },
+          axisTick: {
+            show: false,
+          },
+        }],
         series: [{
-          name: '总工单数',
-          type: 'bar',
-          xAxisIndex: 1,
-
-          itemStyle: {
+          name: '工单总量',
+          type: 'line',
+          // smooth: true, //是否平滑曲线显示
+          // 			symbol:'circle',  // 默认是空心圆（中间是白色的），改成实心圆
+          showAllSymbol: true,
+          symbol: 'emptyCircle',
+          symbolSize: 6,
+          lineStyle: {
             normal: {
-              show: true,
-              color: '#277ace',
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
-          },
-          barWidth: '25%',
-          data: total
-        }, {
-          name: '转办工单数',
-          type: 'bar',
-          xAxisIndex: 1,
-
-          itemStyle: {
-            normal: {
-              show: true,
-              color: '#C96DD8',
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
-          },
-          barWidth: '25%',
-          barGap: '100%',
-          data: distributeCount
-        }, {
-          name: '在线办结工单数',
-          type: 'bar',
-          itemStyle: {
-            normal: {
-              show: true,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: '#00FFE6'
-              }, {
-                offset: 1,
-                color: '#007CC6'
-              }]),
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
+              color: "#28ffb3", // 线条颜色
+            },
+            borderColor: '#f0f'
           },
           label: {
+            show: true,
+            position: 'top',
+            textStyle: {
+              color: '#fff',
+            }
+          },
+          itemStyle: {
             normal: {
-              show: true,
-              position: 'top',
-              textStyle: {
-                color: '#fff'
+              color: "#28ffb3",
+
+            }
+          },
+          tooltip: {
+            show: false
+          },
+          data: [393, 438, 485, 631, 689, 824, 987]
+        }, {
+          name: '办结工单量',
+          type: 'bar',
+          barWidth: 20,
+          tooltip: {
+            show: false
+          },
+          label: {
+            show: true,
+            position: 'top',
+            textStyle: {
+              color: '#fff',
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: function (params) {
+                var colorList = ['#0ec1ff', '#10cdff', '#12daff', '#15ebff', '#17f8ff', '#1cfffb', '#1dfff1'];
+                return colorList[params.dataIndex];
               }
             }
           },
-          barWidth: '25%',
-          data: onlineCount
-        }, {
-          name: '转办办结工单数',
-          type: 'bar',
-          barWidth: '25%',
-          itemStyle: {
-            normal: {
-              show: true,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                //color: '#3023AE'
-                color: '#de2a99'
-              }, {
-                offset: 1,
-                color: '#de2a99'
-              }]),
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
-          },
-          label: {
-            normal: {
-              show: true,
-              position: 'top',
-              textStyle: {
-                color: '#fff'
-              }
-            }
-          },
-          barGap: '100%',
-          data: distributeFinish
-        }
-
-        ]
-
-      });
-    }else {
-      setOptions({});
+          data: [200, 382, 102, 267, 186, 315, 316]
+        }]
+      }
     }
+  }
 
-  }, [TimeHandle]);
-  return (
-    <div className={styles.mainContainer} style={{marginTop:'60px', width:'100%'}}>
+  render() {
+    return (
+      <div className={styles.mainContainer} style={{ marginTop: '60px', width: '100%' }}>
 
-      <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
-        <img src={imgUrl} alt={'#'}/>
-        <strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>实时{partName}办结案件</strong>
-        <ReactEcharts
-          option={options}
-          style={{ width: '600px', height: '480px' ,marginTop:'150px'}}
-        />
-      </div>
-      <div className={styles.circle}>
-          <Circle/>
+        <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
+          <img src={imgUrl} alt={'#'} />
+          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>实时街道办结案件</strong>
+          <ReactEcharts
+            option={this.options}
+            style={{ width: '600px', height: '480px', marginTop: '150px' }}
+          />
         </div>
-    </div>
-  );
+        <div className={styles.circle}>
+          <Circle />
+        </div>
+      </div>
+    );
+  }
 }
+
+
 export default connect(({ appeal }) => ({
   TimeHandle: appeal.TimeHandle,
   partName: appeal.partName,

@@ -117,7 +117,7 @@ function History(props) {
     <div>
       <ReactEcharts
         option={options}
-        style={{ width: '650px', height: '800px' }} />
+        style={{ width: '600px', height: '800px' }} />
     </div>
   );
 }
