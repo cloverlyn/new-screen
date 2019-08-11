@@ -1,0 +1,33 @@
+@import "../../Basic";
+
+.container {
+  @extend .containerBorder;
+  grid-area: rightb;
+  display: grid;
+  grid-template-rows: 100px 600px;
+
+  .title {
+    @extend .containerTitle
+  }
+
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .circle {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+  .logo{
+    display: flex;
+    float: right;
+  }
+  .title2{
+    //padding-left: 10px;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #06e4f9;
+  }
+}

@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  grid: 'leftTop Area rightTop' 1fr 'leftb Area rightb' 1fr / 1fr 1fr 1fr;
+  height: 92.2vh;
+  grid-column-gap: 1vh;
+  grid-row-gap: 1vh;
+  color: white;
+}
+
+.ifStyle {
+  width: 100%;
+  height: 91.2vh;
+
+  &::-webkit-scrollbar {
+    width: 0 !important
+  }
+}

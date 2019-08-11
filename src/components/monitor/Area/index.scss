@@ -1,0 +1,28 @@
+@import "../../Basic";
+
+.container {
+  @extend .containerBorder;
+  grid-area: Area;
+  display: grid;
+  grid-template-rows: 100px 100px 100px 400px 100px 500px;
+  //grid-template-rows: 100px 600px 700px;
+
+  .title {
+    @extend .containerTitle
+  }
+
+  .letter {
+    background-color: #01126f;
+    padding: 10px;
+    margin: 10px;
+    right: 5px;
+    border-color: #ffffff;
+    border-style: solid;
+    border-width: 2px;
+    color: #fff;
+    display: inline-block;
+    font-family: monospace;
+    font-size: 32px;
+    text-align: center;
+  }
+}

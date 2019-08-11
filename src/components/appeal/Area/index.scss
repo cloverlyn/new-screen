@@ -1,0 +1,12 @@
+@import "../../Basic";
+
+.container {
+  @extend .containerBorder;
+  grid-area: Area;
+  display: grid;
+  grid-template-rows: 100px 600px 700px;
+
+  .title {
+    @extend .containerTitle
+  }
+}

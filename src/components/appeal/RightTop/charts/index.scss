@@ -1,0 +1,24 @@
+@import "../../../Basic";
+
+.container {
+  @extend .containerBorder;
+  grid-area: rightTop;
+  display: grid;
+  grid-template-rows:  1fr 6fr;
+
+  .title {
+    @extend .containerTitle
+  }
+
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+  }
+  img{
+    width: auto;
+    height: auto;
+    max-width: 20px;
+    max-height: 20px;
+    padding-right:10px;
+  }
+}

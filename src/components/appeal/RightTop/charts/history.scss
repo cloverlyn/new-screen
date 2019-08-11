@@ -1,0 +1,18 @@
+@import "../../../Basic";
+
+.container {
+  grid-area: distribute;
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+
+  .title {
+    @extend .subTitle;
+  }
+  img{
+    width: auto;
+    height: auto;
+    max-width: 20px;
+    max-height: 20px;
+    padding-right:10px;
+  }
+}

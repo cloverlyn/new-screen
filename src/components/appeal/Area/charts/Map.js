@@ -1,0 +1,255 @@
+import React from 'react';
+import echarts from 'echarts/lib/echarts';
+import ReactEcharts from 'echarts-for-react';
+import { connect } from 'dva';
+import point1 from '@/assets/point1.png'
+//import point2 from '@/assets/point2.png'
+import point3 from '@/assets/point3.png'
+//import point4 from '@/assets/point4.png'
+import City from './CityEventCount'
+import styles from './../index.scss'
+import SStyle from '@/pages/appeal/index.scss'
+import LeftTop from '@/components/appeal/LeftTop';
+import RightTop from '@/components/appeal/RightTop';
+import Rightb from '@/components/appeal/Rightb';
+import Leftb from '@/components/appeal/Leftb';
+
+import * as map from '@/utils/map.json';
+
+class Map extends React.Component {
+
+  get options() {
+    const { inTimeHandle } = this.props;
+    let geos = {};
+    map.default.features.forEach(item => {
+      const { name, center } = item.properties;
+      geos[name] = center;
+    });
+
+    echarts.registerMap('changsha', map.default);
+    const convertData = function (data) {
+      let res = [];
+      for (let i = 0; i < data.length; i++) {
+        let geoCoord = geos[data[i].deptName];
+        if (geoCoord) {
+          res.push({
+            name: data[i].deptName,
+            deptId: data[i].deptId,
+            value: geoCoord.concat(data[i].onlineCount, data[i].onlineProportion, data[i].distributeCount, data[i].distributeProportion, data[i].total),
+          });
+        }
+      }
+
+      return res;
+    };
+    const findMax = (data) => {
+      let temp = [];
+      for (let i = 0; i < data.length; i++) {
+        temp.push(data[i].total);
+        temp.push(data[i].deptId);
+      }
+
+      return Math.max(...temp);
+    };
+    if (inTimeHandle.length !== 0) {
+      return {
+        tooltip: {
+          trigger: 'item',
+          formatter: function(params) {
+            return(
+
+              '<span style="color:#00eaff ; font: 18px Microsoft YaHei">' + params.name + ':' + '</span><br/>'
+              + '<ol>'
+              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' +'</span>'
+              + '<span style="color:#de2a99 ; float: left ; padding-left: 10px">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
+              // + '<span style="color:#0093fc ; text-align: left">' + '●' + '<span style="color:#fff">' + params.value[3] + '</span>' + '</span>' + '%<br/>'
+              +'</ol>'
+              //
+              // +'<ol>'
+              // + '<span style="color:#de2a99 ; float: left"">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
+              // + '<span style="color:#863bf3 ; text-align: left">' + '●' + '<span style="color:#fff">' + params.value[5] + '</span>'+ '</span>'  + '%'
+              // + '</ol>'
+
+            )
+          },
+          textStyle:{
+            align:'center'
+          },
+          //alwaysShowContent: true,
+        },
+        visualMap: {
+          min: 0,
+          max: findMax(inTimeHandle),
+          calculable: true,
+          inRange: {
+            color: ['#33FF33', '#FFFF00', '#CC0000'],
+          },
+          textStyle: {
+            color: '#fff',
+            fontSize: 18,
+          },
+        },
+        geo: {
+          map: 'changsha',
+          label: {
+            emphasis: {
+              show: false,
+            },
+          },
+          itemStyle: {
+            normal: {
+              areaColor: '#0067ee',
+              borderColor: '#111',
+            },
+            emphasis: {
+              areaColor: '#707caa',
+            },
+          },
+        },
+
+        //地图连线
+        series: [
+          {
+            name: '事件总计',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            data: convertData(inTimeHandle),
+
+            symbolSize: 25,
+            label: {
+              normal: {
+                show: false,
+              },
+              emphasis: {
+                show: false,
+              },
+            },
+            itemStyle: {
+              emphasis: {
+                borderColor: '#fff',
+                borderWidth: 1,
+              },
+            },
+          }
+        ]
+      }
+    }
+    else {
+      return {};
+    }
+  }
+
+  chartDetails = e => {
+    var id;
+    for (let i = 0; i < this.props.inTimeHandle.length; i++) {
+      if (this.props.inTimeHandle[i].deptName === e.name)
+        id = this.props.inTimeHandle[i].deptId;
+        //console.log(id);
+    }
+
+    this.props.dispatch({
+      type: 'appeal/handleUpdate',
+      payload: {
+        deptId: id
+      },
+    }
+    );
+    this.props.dispatch({
+      type: 'appeal/save',
+      payload: {
+        deptName: e.name,
+        partName: '街道',
+      },
+    });
+
+    this.props.dispatch({
+      type: 'appeal/handleLeftBottom',
+    });
+    this.props.dispatch({
+      type: 'appeal/handleRightTop',
+    });
+    this.props.dispatch({
+      type: 'appeal/handleRightBottom',
+    });
+    this.props.dispatch({
+      type: 'appeal/handleLeftTop',
+    });
+  };
+
+  handClick = e => {
+    this.props.dispatch({
+        type: 'appeal/handleUpdate',
+        payload: {
+          deptId: ''
+        },
+      }
+    );
+    this.props.dispatch({
+      type: 'appeal/save',
+      payload: {
+        deptName: '长沙市',
+        partName: '区县',
+        name: '规划房地',
+        caseName: '规划房地',
+      },
+    });
+
+    this.props.dispatch({
+      type: 'appeal/handleLeftBottom',
+    });
+    this.props.dispatch({
+      type: 'appeal/handleRightTop',
+    });
+    this.props.dispatch({
+      type: 'appeal/handleRightBottom',
+    });
+    this.props.dispatch({
+      type: 'appeal/handleLeftTop',
+    });
+  };
+
+  render() {
+    const { deptName } = this.props;
+    return (
+      <div className={SStyle.container}>
+
+        <LeftTop />
+        <div className={styles.container}>
+          <button className={styles.title} style={{background: 'none', border: 'none', textAlign: 'left'}}  onClick={this.handClick}>事发区域数据统计</button>
+          <div style={{ marginBottom: '150px' }}>
+            <ol>
+              <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
+              <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>
+              {/*<img src={point2} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结率  </strong>*/}
+            </ol>
+            {/*<ol>*/}
+            {/*  <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>*/}
+            {/*  <img src={point4} alt={'#'} /><strong style={{ color: '#00eaff' }}>转办工单办结率</strong>*/}
+            {/*</ol>*/}
+
+            <ReactEcharts
+              option={this.options}
+              style={{ width: '99%', height: '600px' }}
+              onEvents={{ click: this.chartDetails }}
+            />
+
+            <strong style={{ float: 'right', marginRight: '50px', marginTop: '30px'  , fontSize: 32}}>{deptName}案件大类
+        <p style={{ float: 'right', color: '#00eaff', marginBottom: '30px'  , fontSize: 32}}>(单位：个)</p>
+            </strong>
+
+            <City />
+
+          </div>
+        </div>
+        <RightTop />
+        <Rightb />
+        <Leftb />
+      </div>
+    )
+  }
+}
+
+export default connect(({ appeal }) => ({
+  inTimeHandle: appeal.inTimeHandle,
+  deptName: appeal.deptName,
+}))(Map);

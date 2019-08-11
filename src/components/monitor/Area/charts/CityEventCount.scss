@@ -1,0 +1,9 @@
+@import "../../../Basic";
+
+.container {
+  grid-area: distribute;
+
+  .title {
+    @extend .subTitle;
+  }
+}
