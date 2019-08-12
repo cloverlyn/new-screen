@@ -186,42 +186,42 @@ class Map extends React.Component {
                       </div>
                       <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
                         总转办量：
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_1} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_2} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_3} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_4} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_5} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_6} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_7} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_8} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_2} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_3} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_4} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_5} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_6} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_7} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_8} />
                       </div>
                     </div>
                   )
                 }
-                else {
+                else if(index === 2){
                   return (
                     <div style={{marginTop: '10px' }}>
                       <div className = {styles.number} style={{ marginLeft: '50px', fontSize: '30px', textAlign: 'left' }}>
                         本年受理：
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_2} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_3} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_4} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_5} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_6} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_7} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_8} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_1} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_2} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_3} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_4} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_5} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_6} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_7} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_8} />
                       </div>
                       <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
                         本年转办：
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_2} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_3} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_4} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_5} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_6} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_7} />
-                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_8} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_1} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_2} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_3} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_4} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_5} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_6} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_7} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_8} />
                       </div>
                     </div>
                   )
