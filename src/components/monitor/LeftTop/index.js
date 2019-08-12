@@ -8,211 +8,211 @@ import WorkOrder from './charts/WorkOrder';
 
 function LeftTop(props) {
   const { OnlineFinishThis, OnlineFinishLast, DistributeByMonth, DistributeLastMonth } = props;
-  const [options4, setOptions4] = useState({});
+  // const [options4, setOptions4] = useState({});
   const [options5, setOptions5] = useState({});
   const [options6, setOptions6] = useState({});
   useEffect(() => {
     
-    if (OnlineFinishThis) {
-      var tempThis = [];
-      tempThis.push(OnlineFinishThis.onlineProportion);
-      tempThis.push(OnlineFinishThis.distributeProportion);
-      var tempLast = [];
-      tempLast.push(OnlineFinishLast.onlineProportion);
-      tempLast.push(OnlineFinishLast.distributeProportion)
-      setOptions4({
-        // backgroundColor: "#000833",
-        //animation: true,
-        title:{
-          text:"办结率",
-          top:20,
-          right:20,
-          textStyle:{
-            color:'#00eaff',
-            fontSize:20
-          }
-        },
-        legend: {
-          top: 20,
-          left:20,
-          textStyle: {
-            color: "#00eaff"
-          },
-          data: ["上月", "本月"]
-        },
-        grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "10%",
-          containLabel: true
-        },
+    // if (OnlineFinishThis) {
+    //   var tempThis = [];
+    //   tempThis.push(OnlineFinishThis.onlineProportion);
+    //   tempThis.push(OnlineFinishThis.distributeProportion);
+    //   var tempLast = [];
+    //   tempLast.push(OnlineFinishLast.onlineProportion);
+    //   tempLast.push(OnlineFinishLast.distributeProportion)
+    //   setOptions4({
+    //     // backgroundColor: "#000833",
+    //     //animation: true,
+    //     title:{
+    //       text:"办结率",
+    //       top:20,
+    //       right:20,
+    //       textStyle:{
+    //         color:'#00eaff',
+    //         fontSize:20
+    //       }
+    //     },
+    //     legend: {
+    //       top: 20,
+    //       left:20,
+    //       textStyle: {
+    //         color: "#00eaff"
+    //       },
+    //       data: ["上月", "本月"]
+    //     },
+    //     grid: {
+    //       left: "3%",
+    //       right: "4%",
+    //       bottom: "10%",
+    //       containLabel: true
+    //     },
 
-        tooltip: {
-          show: "true",
-          trigger: "item",
-          backgroundColor: "rgba(0,0,0,0.7)", // 背景
-          padding: [8, 10], //内边距
-          extraCssText: "box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);", //添加阴影
-          formatter: function(params) {
+    //     tooltip: {
+    //       show: "true",
+    //       trigger: "item",
+    //       backgroundColor: "rgba(0,0,0,0.7)", // 背景
+    //       padding: [8, 10], //内边距
+    //       extraCssText: "box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);", //添加阴影
+    //       formatter: function(params) {
            
-              return (
-                params.name +
-                "<br>" +
-                params.seriesName +
-                " ： " +
-                params.value +
-                "%"
-              );
+    //           return (
+    //             params.name +
+    //             "<br>" +
+    //             params.seriesName +
+    //             " ： " +
+    //             params.value +
+    //             "%"
+    //           );
            
-          }
-        },
-        yAxis: {
+    //       }
+    //     },
+    //     yAxis: {
 
-          type: "value",
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "#00eaff"
-            }
-          },
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: "#363e83 "
-            }
-          },
-          axisLabel: {
-            formatter: "{value} %",
-            textStyle: {
-              color: "#00eaff",
-              fontWeight: "normal",
-              fontSize: "18",
+    //       type: "value",
+    //       axisTick: {
+    //         show: false
+    //       },
+    //       axisLine: {
+    //         show: true,
+    //         lineStyle: {
+    //           color: "#00eaff"
+    //         }
+    //       },
+    //       splitLine: {
+    //         show: true,
+    //         lineStyle: {
+    //           color: "#363e83 "
+    //         }
+    //       },
+    //       axisLabel: {
+    //         formatter: "{value} %",
+    //         textStyle: {
+    //           color: "#00eaff",
+    //           fontWeight: "normal",
+    //           fontSize: "18",
 
-            }
-          }
-        },
-        xAxis: [
-          {
-            type: "category",
-            axisTick: {
-              show: false
-            },
-            axisLine: {
-              show: true,
-              lineStyle: {
-                color: "#00eaff"
-              }
-            },
-            axisLabel: {
-              inside: false,
-              textStyle: {
-                color: "#00eaff",
-                fontWeight: "normal",
-                fontSize: "18"
-              }
-              // formatter:function(val){
-              //     return val.split("").join("\n")
-              // },
-            },
-            data: ["在线办结率", "转办率"]
-          },
-          {
-            type: "category",
-            axisLine: {
-              show: false
-            },
-            axisTick: {
-              show: false
-            },
-            axisLabel: {
-              show: false
-            },
-            splitArea: {
-              show: false
-            },
-            splitLine: {
-              show: false
-            },
-            data: ["在线办结率", "转办率"]
-          }
-        ],
-        series: [
-          {
-            type: "bar",
-            xAxisIndex: 1,
-            zlevel: 1
-          },
-          {
-            type: "bar",
-            xAxisIndex: 1,
-            zlevel: 1
-          },
-          {
-            type: "bar",
-            xAxisIndex: 1,
-            zlevel: 1
-          },
-          {
-            name: "上月",
-            type: "bar",
-            itemStyle: {
-              normal: {
-                show: true,
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  {
-                    offset: 0,
-                    color: "#fccb05"
-                  },
-                  {
-                    offset: 1,
-                    color: "#f5804d"
-                  }
-                ]),
-                fontSize:18,
-                barBorderRadius: 50,
-                borderWidth: 0
-              }
-            },
-            zlevel: 2,
-            barWidth: "16%",//柱子宽度
-            data: tempLast
-          },
-          {
-            name: "本月",
-            type: "bar",
-            barWidth: "16%",
-            itemStyle: {
-              normal: {
-                show: true,
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  {
-                    offset: 0,
-                    color: "#248ff7"
-                  },
-                  {
-                    offset: 1,
-                    color: "#6851f1"
-                  }
-                ]),
-                fontSize:18,
-                barBorderRadius: 50,
-                borderWidth: 0
-              }
-            },
-            zlevel: 2,
-            barGap: "100%",
-            data: tempThis
-          }
-        ]
-      });
-    }
-    else
-      {
-        setOptions4({});
-      }
+    //         }
+    //       }
+    //     },
+    //     xAxis: [
+    //       {
+    //         type: "category",
+    //         axisTick: {
+    //           show: false
+    //         },
+    //         axisLine: {
+    //           show: true,
+    //           lineStyle: {
+    //             color: "#00eaff"
+    //           }
+    //         },
+    //         axisLabel: {
+    //           inside: false,
+    //           textStyle: {
+    //             color: "#00eaff",
+    //             fontWeight: "normal",
+    //             fontSize: "18"
+    //           }
+    //           // formatter:function(val){
+    //           //     return val.split("").join("\n")
+    //           // },
+    //         },
+    //         data: ["在线办结率", "转办率"]
+    //       },
+    //       {
+    //         type: "category",
+    //         axisLine: {
+    //           show: false
+    //         },
+    //         axisTick: {
+    //           show: false
+    //         },
+    //         axisLabel: {
+    //           show: false
+    //         },
+    //         splitArea: {
+    //           show: false
+    //         },
+    //         splitLine: {
+    //           show: false
+    //         },
+    //         data: ["在线办结率", "转办率"]
+    //       }
+    //     ],
+    //     series: [
+    //       {
+    //         type: "bar",
+    //         xAxisIndex: 1,
+    //         zlevel: 1
+    //       },
+    //       {
+    //         type: "bar",
+    //         xAxisIndex: 1,
+    //         zlevel: 1
+    //       },
+    //       {
+    //         type: "bar",
+    //         xAxisIndex: 1,
+    //         zlevel: 1
+    //       },
+    //       {
+    //         name: "上月",
+    //         type: "bar",
+    //         itemStyle: {
+    //           normal: {
+    //             show: true,
+    //             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    //               {
+    //                 offset: 0,
+    //                 color: "#fccb05"
+    //               },
+    //               {
+    //                 offset: 1,
+    //                 color: "#f5804d"
+    //               }
+    //             ]),
+    //             fontSize:18,
+    //             barBorderRadius: 50,
+    //             borderWidth: 0
+    //           }
+    //         },
+    //         zlevel: 2,
+    //         barWidth: "16%",//柱子宽度
+    //         data: tempLast
+    //       },
+    //       {
+    //         name: "本月",
+    //         type: "bar",
+    //         barWidth: "16%",
+    //         itemStyle: {
+    //           normal: {
+    //             show: true,
+    //             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    //               {
+    //                 offset: 0,
+    //                 color: "#248ff7"
+    //               },
+    //               {
+    //                 offset: 1,
+    //                 color: "#6851f1"
+    //               }
+    //             ]),
+    //             fontSize:18,
+    //             barBorderRadius: 50,
+    //             borderWidth: 0
+    //           }
+    //         },
+    //         zlevel: 2,
+    //         barGap: "100%",
+    //         data: tempThis
+    //       }
+    //     ]
+    //   });
+    // }
+    // else
+    //   {
+    //     setOptions4({});
+    //   }
 
     if (OnlineFinishThis) {
       var tempThis1 = [];
@@ -364,6 +364,12 @@ function LeftTop(props) {
               }
             },
             zlevel: 2,
+            label: {
+              show: true,
+              position: 'top',
+              color: '#fff',
+              fontSize: 20,
+            },
             barWidth: "18%",
             data: tempLast1
           },
@@ -389,6 +395,12 @@ function LeftTop(props) {
               }
             },
             zlevel: 2,
+            label: {
+              show: true,
+              position: 'top',
+              color: '#fff',
+              fontSize: 20,
+            },
             barGap: "100%",
             data: tempThis1
           }
