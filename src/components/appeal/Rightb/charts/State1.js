@@ -10,17 +10,19 @@ class AreaDept extends React.Component {
     const { areaDept } = this.props;
     if (areaDept) {
       return {
-        tooltip: {},
+        tooltip: {
+          trigger: 'axis'
+        },
         grid: {
           top: '8%',
-          left: '1%',
+          left: '5%',
           right: '1%',
           bottom: '8%',
           containLabel: true,
         },
         legend: {
           itemGap: 50,
-          data: ['办结工单量', '工单总量'],
+          data: ['总工单', '转办办结工单'],
           textStyle: {
             color: '#f9f9f9',
             borderColor: '#fff',
@@ -33,15 +35,15 @@ class AreaDept extends React.Component {
           axisLine: { //坐标轴轴线相关设置。数学上的x轴
             show: true,
             lineStyle: {
-              color: '#f9f9f9'
+              color: '#00eaff'
             },
           },
           axisLabel: { //坐标轴刻度标签的相关设置
-            rotate: 60,
+            rotate: 40,
             textStyle: {
-              color: '#d1e6eb',
+              color: '#00eaff',
               margin: 15,
-              fontSize: 20,
+              fontSize: 18,
             },
           },
           axisTick: {
@@ -68,8 +70,8 @@ class AreaDept extends React.Component {
           axisLabel: {
             margin: 20,
             textStyle: {
-              color: '#d1e6eb',
-
+              color: '#00eaff',
+              fontSize: 18
             },
           },
           axisTick: {
@@ -77,16 +79,17 @@ class AreaDept extends React.Component {
           },
         }],
         series: [{
-          name: '办结工单量',
+          name: '转办办结工单',
           type: 'line',
           // smooth: true, //是否平滑曲线显示
           // 			symbol:'circle',  // 默认是空心圆（中间是白色的），改成实心圆
           showAllSymbol: true,
           symbol: 'emptyCircle',
-          symbolSize: 6,
+          symbolSize: 12,
           lineStyle: {
             normal: {
-              color: "#28ffb3", // 线条颜色
+              //color: "#28ffb3", // 线条颜色
+              color:'#f0f'
             },
             borderColor: '#f0f'
           },
@@ -95,32 +98,33 @@ class AreaDept extends React.Component {
             position: 'top',
             textStyle: {
               color: '#fff',
+              fontWeight: 'bold'
             }
           },
           itemStyle: {
             normal: {
-              color: "#28ffb3",
-
+              color: "#f0f",
             }
           },
           tooltip: {
-            show: false
+            show: true
           },
           data: areaDept.map(item => {
             return item.distributeFinish;
           }),
         }, {
-          name: '工单总量',
+          name: '总工单',
           type: 'bar',
           barWidth: 20,
           tooltip: {
-            show: false
+            show: true
           },
           label: {
             show: true,
             position: 'top',
             textStyle: {
               color: '#fff',
+              fontSize: 16
             }
           },
           itemStyle: {
@@ -161,10 +165,10 @@ class AreaDept extends React.Component {
 
         <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
           <img src={imgUrl} alt={'#'} />
-          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>区县机关部门办结案件</strong>
+          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>区机关部门工单统计</strong>
           <ReactEcharts
             option={this.options}
-            style={{ width: '600px', height: '480px', marginTop: '150px' }}
+            style={{ width: '600px', height: '520px', marginTop: '150px' }}
             onEvents={{ click: this.chartDetails }}
           />
         </div>

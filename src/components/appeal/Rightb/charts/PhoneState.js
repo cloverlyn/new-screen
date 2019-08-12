@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Circle from './Circle';
 import ReactEcharts from 'echarts-for-react';
+import Circle from './Circle';
+import styles from './../index.scss';
 import echarts from 'echarts/lib/echarts';
 import imgUrl from '@/assets/dataicon.png';
-import styles from './../index.scss';
 import { connect } from 'react-redux';
 
 //export default function(props) {

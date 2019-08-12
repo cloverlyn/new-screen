@@ -120,7 +120,7 @@ class AreaDept extends React.Component {
 
         <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
           <img src={imgUrl} alt={'#'} />
-          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>区县机关部门办结案件</strong>
+          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>街道工单统计</strong>
           <ReactEcharts
             option={this.options}
             style={{ width: '600px', height: '480px', marginTop: '150px' }}

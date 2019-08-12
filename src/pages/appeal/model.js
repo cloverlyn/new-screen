@@ -319,11 +319,19 @@ export default {
         return item.deptId;
       })
       const areaDeptDetail = yield call(fetchAreaDeptDetail, temp[0]);
+
+      const tempAreaDeptDetail = areaDeptDetail.data.map(item => {
+        return {
+          ...item,
+          caseTypeName: firstDataMap[item.caseTypeName],
+        };
+      });
+
       yield put({
         type: 'save',
         payload: {
           areaDept: res.data,
-          areaDeptDetail: areaDeptDetail.data,
+          areaDeptDetail: tempAreaDeptDetail,
         },
       });
     },
@@ -331,10 +339,18 @@ export default {
     * handleAreaDeptDetail({ payload: { areaId } }, { call, put }) {
 
       const res = yield call(fetchAreaDeptDetail, areaId);
+
+      const tempAreaDeptDetail = res.data.map(item => {
+        return {
+          ...item,
+          caseTypeName: firstDataMap[item.caseTypeName],
+        };
+      });
+
       yield put({
         type: 'save',
         payload: {
-          areaDeptDetail: res.data,
+          areaDeptDetail: tempAreaDeptDetail,
         },
       });
     },
@@ -345,11 +361,19 @@ export default {
         return item.deptId;
       })
       const areaStreetDetail = yield call(fetchAreaStreetDetail, temp[0]);
+
+      const tempAreaStreetDetail = areaStreetDetail.data.map(item => {
+        return {
+          ...item,
+          caseTypeName: firstDataMap[item.caseTypeName],
+        };
+      });
+
       yield put({
         type: 'save',
         payload: {
           areaStreet: res.data,
-          areaStreetDetail: areaStreetDetail.data,
+          areaStreetDetail: tempAreaStreetDetail,
         },
       });
     },
@@ -357,10 +381,18 @@ export default {
     * handleAreaStreetDetail({ payload: { areaId } }, { call, put }) {
 
       const res = yield call(fetchAreaStreetDetail, areaId);
+
+      const tempAreaStreetDetail = res.data.map(item => {
+        return {
+          ...item,
+          caseTypeName: firstDataMap[item.caseTypeName],
+        };
+      });
+
       yield put({
         type: 'save',
         payload: {
-          areaStreetDetail: res.data,
+          areaStreetDetail: tempAreaStreetDetail,
         },
       });
     },
