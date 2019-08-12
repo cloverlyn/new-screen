@@ -172,9 +172,20 @@ class Map extends React.Component {
               caseTotal.map((item, index) => {
                 if (index === 0) {
                   return (
-                    <div style={{ borderStyle: 'groove', borderColor: 'rgba(31, 80, 190, 0.75)', width: '80%', marginLeft: '10%', borderWidth: '10px' }}>
-                      <div style={{ fontSize: '30px', textAlign: 'center' }}>
-                        总计工单：
+                    <div>
+                      <div className = {styles.number} style={{ marginLeft: '50px', fontSize: '30px', textAlign: 'left' }}>
+                        总受理量：
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_1} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_2} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_3} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_4} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_5} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_6} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_7} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_8} />
+                      </div>
+                      <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
+                        总转办量：
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_2} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_3} />
@@ -189,9 +200,20 @@ class Map extends React.Component {
                 }
                 else {
                   return (
-                    <div style={{ borderStyle: 'groove', borderColor: 'rgba(31, 80, 190, 0.75)', width: '80%', marginLeft: '10%', borderWidth: '10px', marginTop: '20px' }}>
-                      <div style={{ fontSize: '30px', textAlign: 'center' }}>
-                        本年工单：
+                    <div style={{marginTop: '10px' }}>
+                      <div className = {styles.number} style={{ marginLeft: '50px', fontSize: '30px', textAlign: 'left' }}>
+                        本年受理：
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_2} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_3} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_4} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_5} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_6} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_7} />
+                        <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_8} />
+                      </div>
+                      <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
+                        本年转办：
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_2} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_3} />
@@ -209,8 +231,8 @@ class Map extends React.Component {
             }
           </div>
 
-          <div style={{ marginTop: '150px' }}>
-            <div style={{ fontSize: '3.1vh', color: 'rgba(255, 255, 255, 0.67)' }} >事发区域数据统计</div>
+          <div style={{ marginTop: '70px' }}>
+            <div style={{ fontSize: '2.5vh', color: 'rgba(255, 255, 255, 0.67)' }} >事发区域数据统计</div>
 
             <ReactEcharts
               option={this.options}
