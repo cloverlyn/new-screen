@@ -22,6 +22,8 @@ import {
   fetchMoreOneCaseTypeResult,
   fetchAreaDept,
   fetchAreaDeptDetail,
+  fetchAreaStreet,
+  fetchAreaStreetDetail,
 } from '@/pages/appeal/service';
 import { firstDataMap } from '@/utils/config';
 
@@ -59,6 +61,8 @@ export default {
     moreOneCaseTypeResult: [],
     areaDept: [],
     areaDeptDetail: [],
+    areaStreet: [],
+    areaStreetDetail: [],
   },
   reducers: {
     save(state, { payload: data }) {
@@ -331,6 +335,32 @@ export default {
         type: 'save',
         payload: {
           areaDeptDetail: res.data,
+        },
+      });
+    },
+
+    * handleAreaStreet({ payload: { deptId } }, { call, put }) {
+      const res = yield call(fetchAreaStreet, deptId);
+      const temp = res.data.map((item) =>{
+        return item.deptId;
+      })
+      const areaStreetDetail = yield call(fetchAreaStreetDetail, temp[0]);
+      yield put({
+        type: 'save',
+        payload: {
+          areaStreet: res.data,
+          areaStreetDetail: areaStreetDetail.data,
+        },
+      });
+    },
+
+    * handleAreaStreetDetail({ payload: { areaId } }, { call, put }) {
+
+      const res = yield call(fetchAreaStreetDetail, areaId);
+      yield put({
+        type: 'save',
+        payload: {
+          areaStreetDetail: res.data,
         },
       });
     },

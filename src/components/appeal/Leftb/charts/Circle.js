@@ -7,14 +7,16 @@ import { connect } from 'react-redux';
 //export default function(props) {
 function Rightb(props) {
   //const { monitorCount } = props;
-  const { messageLib } = props;
+  const { areaStreetDetail } = props;
+
   const [options, setOptions] = useState({});
   useEffect(() => {
-    if (messageLib) {
-      const temp = messageLib.map(item => {
+
+    if (areaStreetDetail) {
+      const temp = areaStreetDetail.map(item => {
         return {
-          name: item.deptName,
-          value: item.count,
+          name: item.caseTypeName,
+          value: item.caseCount,
         }
       });
       setOptions({
@@ -85,7 +87,7 @@ function Rightb(props) {
       setOptions({});
     }
 
-  }, [messageLib]);
+  }, [areaStreetDetail]);
   return (
     <div style={{ flex: '1' }}>
       <div id={'chart'} className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
@@ -94,7 +96,7 @@ function Rightb(props) {
         <strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>信息库引用统计</strong>
         <ReactEcharts
           option={options}
-          style={{ width: '600px', height: '480px' ,marginTop:'150px' }}
+          style={{ width: '600px', height: '550px' ,marginTop:'50px' }}
         />
       </div>
 
@@ -102,7 +104,6 @@ function Rightb(props) {
   );
 }
 export default connect(({ appeal }) => ({
-  //monitorCount: appeal.monitorCount,
-  messageLib: appeal.messageLib,
+  areaStreetDetail: appeal.areaStreetDetail,
 }))(Rightb);
 

@@ -28,7 +28,9 @@ export const appealOnlineFinish = {
   messageLib:  `${baseUrl}bigScreenPreviewController/queryInfoBaseReference1`,
   MoreOneCaseTypeResult:  `${baseUrl}bigScreenPreviewController/queryMoreOneCaseTypeResult?timeType=1`,
   AreaDept: `${baseUrl}bigScreenPreviewController/queryCaseStatisticsOfAreaStreet`,
-  AreaDeptDetail: `${baseUrl}bigScreenPreviewController/queryCaseTypeStatisticsOfAreaStreet`
+  AreaDeptDetail: `${baseUrl}bigScreenPreviewController/queryCaseTypeStatisticsOfAreaStreet`,
+  AreaStreet: `${baseUrl}bigScreenPreviewController/queryCaseStatisticsOfAreaStreet`,
+  AreaStreetDetail: `${baseUrl}bigScreenPreviewController/queryCaseTypeStatisticsOfAreaStreet`
   // HistoryData1: `${baseUrl2}history`,
   // HistoryData2: `${baseUrl2}history`,
   // HistoryData3: `${baseUrl2}Event_copy_1563979752939`,

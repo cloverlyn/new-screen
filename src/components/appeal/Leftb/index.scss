@@ -4,7 +4,7 @@
   @extend .containerBorder;
   grid-area: leftb;
   display: grid;
-  grid-template-rows: 100px 450px;
+  grid-template-rows: 100px 700px;
 
   .title {
     @extend .containerTitle
@@ -13,6 +13,13 @@
   .mainContainer {
     display: grid;
     //grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    .circle {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
   }
 
   img{

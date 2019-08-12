@@ -252,3 +252,22 @@ export function fetchAreaDeptDetail(areaId) {
     }),
   });
 }
+
+//街道
+export function fetchAreaStreet(deptId) {
+  const { AreaStreet } = appealOnlineFinish;
+  return request(`${AreaStreet}?deptId=${deptId}&deptType=4`, {
+    header: new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }),
+  });
+}
+
+export function fetchAreaStreetDetail(areaId) {
+  const { AreaStreetDetail } = appealOnlineFinish;
+  return request(`${AreaStreetDetail}?deptId=${areaId}&deptType=4`, {
+    header: new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }),
+  });
+}

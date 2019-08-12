@@ -1,243 +1,143 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Circle from './Circle';
 import ReactEcharts from 'echarts-for-react';
-import styles from './../index.scss';
-import echarts from 'echarts/lib/echarts';
 import imgUrl from '@/assets/dataicon.png';
+import styles from './../index.scss';
 import { connect } from 'react-redux';
 
-//export default function(props) {
-function TimeHandle(props) {
-  const { TimeHandle } = props;
-  const [options, setOptions] = useState({});
-
-  useEffect(() => {
-    if (TimeHandle) {
-      //var data = ["95","5"]
-      const name = TimeHandle.map(item => {
-        return item.deptName;
-      });
-      const total = TimeHandle.map(item => {
-        return item.total;
-      });
-      const onlineCount = TimeHandle.map(item => {
-        return item.onlineCount;
-      });
-      const distributeCount = TimeHandle.map(item => {
-        return item.distributeCount;
-      });
-      const distributeFinish = TimeHandle.map(item => {
-        return item.distributeFinish;
-      });
-      setOptions({
+class AreaDept extends React.Component {
+  get options() {
+    const { areaStreet } = this.props;
+    if (areaStreet) {
+      return {
+        tooltip : {
+          trigger: 'axis'
+        },
         legend: {
-          top:0,
-          textStyle: {
-            color: '#00eaff',
+          data:['总工单','转办办结工单'],
+          textStyle:{
+            color:'#00eaff',
             fontSize:18
           },
-          data: ['总工单数', '在线办结工单数','转办工单数','转办办结工单数']
         },
         grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '10%',
+          left: '4%',
+          top: "12%",
+          bottom: "8%",
+          right: "5%",
           containLabel: true
         },
-
-        tooltip: {
-          show: "true",
-          trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+        toolbox: {
+          show : true,
+        
+        },
+        calculable : true,
+        xAxis : [
+          {
+            type : 'category',
+            //data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+            data:areaStreet.map(item =>{
+              return item.deptName
+            }),
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: '#00eaff',
+              }
+            },
+            axisLabel:{
+              rotate:40,
+              textStyle:{
+                fontSize: 18
+              }
+            },
           }
-        },
-        yAxis: {
-          type: 'value',
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false,
-            lineStyle: {
-              color: '#00eaff',
-            }
-          },
-          axisLabel:{
-            textStyle:{
-              fontSize: 18
-            }
-          },
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: '#aaa',
-            }
-          },
-        },
-        xAxis: [{
-          type: 'category',
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: '#00eaff',
-            }
-          },
-          axisLabel:{
-            rotate:40,
-            textStyle:{
-              fontSize: 18
-            }
-          },
-          data: name
-          //data: inTimeHandleFinish.map(item => {
-          // return item.deptName;
-          //}),
-        }, {
-          type: 'category',
-          axisLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          },
-          splitArea: {
-            show: false
-          },
-          splitLine: {
-            show: false
-          },
-          data: name
-        },
-
         ],
-        series: [{
-          name: '总工单数',
-          type: 'bar',
-          xAxisIndex: 1,
-
-          itemStyle: {
-            normal: {
+        yAxis : [
+          {
+            type : 'value',
+            axisLine: {
               show: true,
-              color: '#277ace',
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
-          },
-          barWidth: '25%',
-          data: total
-        }, {
-          name: '转办工单数',
-          type: 'bar',
-          xAxisIndex: 1,
-
-          itemStyle: {
-            normal: {
-              show: true,
-              color: '#C96DD8',
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
-          },
-          barWidth: '25%',
-          barGap: '100%',
-          data: distributeCount
-        }, {
-          name: '在线办结工单数',
-          type: 'bar',
-          itemStyle: {
-            normal: {
-              show: true,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: '#00FFE6'
-              }, {
-                offset: 1,
-                color: '#007CC6'
-              }]),
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
-          },
-          label: {
-            normal: {
-              show: true,
-              position: 'top',
-              textStyle: {
-                color: '#fff'
+              lineStyle: {
+                color: '#00eaff',
               }
-            }
-          },
-          barWidth: '25%',
-          data: onlineCount
-        }, {
-          name: '转办办结工单数',
-          type: 'bar',
-          barWidth: '25%',
-          itemStyle: {
-            normal: {
-              show: true,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                //color: '#3023AE'
-                color: '#de2a99'
-              }, {
-                offset: 1,
-                color: '#de2a99'
-              }]),
-              barBorderRadius: 50,
-              borderWidth: 0,
-              borderColor: '#333',
-            }
-          },
-          label: {
-            normal: {
-              show: true,
-              position: 'top',
-              textStyle: {
-                color: '#fff'
+            },
+            axisLabel:{
+              textStyle:{
+                fontSize: 18
               }
-            }
-          },
-          barGap: '100%',
-          data: distributeFinish
-        }
+            },
+          }
+        ],
+        series : [
+          {
+            name:'总工单',
+            type:'bar',
+            itemStyle:{
+              color: '#00FFE6'
+            },
+            //data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+            data:areaStreet.map(item =>{
+              return item.distributeCount
+            }),
 
+          },
+          {
+            name:'转办办结工单',
+            type:'bar',
+            itemStyle:{
+              color: '#de2a99'
+            },
+            //data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+            data:areaStreet.map(item =>{
+              return item.distributeFinish
+            }),
+          }
         ]
-
-      });
-    }else {
-      setOptions({});
+      }
     }
+  }
 
-  }, [TimeHandle]);
-  return (
-    <div className={styles.mainContainer} style={{marginTop:'60px', width:'100%'}}>
+  chartDetails = e => {
+    var id;
+    this.props.areaStreet.map(item =>{
+      if(item.deptName === e.name)
+        id = item.deptId;
+    })
+    this.props.dispatch({
+      type: 'appeal/handleAreaStreetDetail',
+      payload: {
+        areaId: id,
+      },
+    });
+  };
 
-      <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
-        <img src={imgUrl} alt={'#'}/>
-        <strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>实时区县办结案件</strong>
-        <ReactEcharts
-          option={options}
-          style={{ width: '600px', height: '480px' ,marginTop:'150px'}}
-        />
-      </div>
-      <div className={styles.circle}>
-          <Circle/>
+
+  render() {
+    // const {deptName} = this.props;
+    return (
+      <div className={styles.mainContainer} style={{ marginTop: '60px', width: '100%' }}>
+
+        <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
+          <img src={imgUrl} alt={'#'} />
+          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>区县机关部门办结案件</strong>
+          <ReactEcharts
+            option={this.options}
+            style={{ width: '600px', height: '480px', marginTop: '150px' }}
+            onEvents={{ click: this.chartDetails }}
+          />
         </div>
-    </div>
-  );
+        <div className={styles.circle}>
+          <Circle />
+        </div>
+      </div>
+    );
+  }
 }
+
+
 export default connect(({ appeal }) => ({
-  TimeHandle: appeal.TimeHandle,
-}))(TimeHandle);
+  areaStreet: appeal.areaStreet,
+  // deptName: appeal.deptName,
+}))(AreaDept);
 
