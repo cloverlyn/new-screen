@@ -55,15 +55,15 @@ class Map extends React.Component {
       return {
         tooltip: {
           trigger: 'item',
-          formatter: function(params) {
-            return(
+          formatter: function (params) {
+            return (
 
               '<span style="color:#00eaff ; font: 18px Microsoft YaHei">' + params.name + ':' + '</span><br/>'
               + '<ol>'
-              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' +'</span>'
+              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' + '</span>'
               + '<span style="color:#de2a99 ; float: left ; padding-left: 10px">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
               // + '<span style="color:#0093fc ; text-align: left">' + '●' + '<span style="color:#fff">' + params.value[3] + '</span>' + '</span>' + '%<br/>'
-              +'</ol>'
+              + '</ol>'
               //
               // +'<ol>'
               // + '<span style="color:#de2a99 ; float: left"">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
@@ -72,8 +72,8 @@ class Map extends React.Component {
 
             )
           },
-          textStyle:{
-            align:'center'
+          textStyle: {
+            align: 'center'
           },
           //alwaysShowContent: true,
         },
@@ -144,7 +144,7 @@ class Map extends React.Component {
     for (let i = 0; i < this.props.inTimeHandle.length; i++) {
       if (this.props.inTimeHandle[i].deptName === e.name)
         id = this.props.inTimeHandle[i].deptId;
-        //console.log(id);
+      //console.log(id);
     }
 
     this.props.dispatch({
@@ -172,7 +172,8 @@ class Map extends React.Component {
       type: 'appeal/save',
       payload: {
         deptName: e.name,
-        partName: '街道',
+        partName: '区县街道',
+        areaName: '区县机关部门'
       },
     });
 
@@ -192,17 +193,16 @@ class Map extends React.Component {
 
   handClick = e => {
     this.props.dispatch({
-        type: 'appeal/handleUpdate',
-        payload: {
-          deptId: ''
-        },
-      }
+      type: 'appeal/handleUpdate',
+      payload: {
+        deptId: ''
+      },
+    }
     );
     this.props.dispatch({
       type: 'appeal/save',
       payload: {
         deptName: '长沙市',
-        partName: '区县',
         name: '规划房地',
         caseName: '规划房地',
       },
@@ -229,7 +229,7 @@ class Map extends React.Component {
 
         <LeftTop />
         <div className={styles.container}>
-          <button className={styles.title} style={{background: 'none', border: 'none', textAlign: 'left'}}  onClick={this.handClick}>事发区域数据统计</button>
+          <button className={styles.title} style={{ background: 'none', border: 'none', textAlign: 'left' }} onClick={this.handClick}>事发区域数据统计</button>
           <div style={{ marginBottom: '150px' }}>
             <ol>
               <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
@@ -247,11 +247,12 @@ class Map extends React.Component {
               onEvents={{ click: this.chartDetails }}
             />
 
-            <strong style={{ float: 'right', marginRight: '50px', marginTop: '30px'  , fontSize: 32}}>{deptName}案件大类
-        <p style={{ float: 'right', color: '#00eaff', marginBottom: '30px'  , fontSize: 32}}>(单位：个)</p>
-            </strong>
+
 
             <City />
+            <strong style={{ float: 'right', marginRight: '50px', marginTop: '30px', fontSize: 32 }}>{deptName}案件大类
+        <p style={{ float: 'right', color: '#00eaff', marginBottom: '30px', fontSize: 32 }}>(单位：个)</p>
+            </strong>
 
           </div>
         </div>

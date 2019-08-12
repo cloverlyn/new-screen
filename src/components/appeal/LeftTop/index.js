@@ -93,7 +93,7 @@ class LeftTop extends React.Component {
 
   render() {
     const { name } = this.props;
-    const { partName } = this.props;
+    // const { partName } = this.props;
     return (
       <div className={styles.container}>
         <div className={styles.title}>在线办结案件</div>
@@ -108,18 +108,13 @@ class LeftTop extends React.Component {
             />
           </div>
 
-          <div style={{ opacity: 0.9, width: '600px', height: '800px' }}>
+          <div style={{ opacity: 0.9, width: '800px', height: '800px' }}>
             <img src={imgUrl} alt="" />
             <strong style={{ color: '#00eaff', fontSize: '1.6vh'}}>
               {name}案件类概况
             </strong>
             <Charts />
 
-            <img src={imgUrl} alt="" />
-            <strong style={{ color: '#00eaff', fontSize: '1.6vh'}}>
-              {name}类{partName}分布图
-            </strong>
-            <Detail />
           </div>
         </div>
       </div>
@@ -130,5 +125,5 @@ class LeftTop extends React.Component {
 export default connect(({ appeal }) => ({
   caseTypeStatistics: appeal.caseTypeStatistics,
   name: appeal.name,
-  partName: appeal.partName,
+  // partName: appeal.partName,
 }))(LeftTop);

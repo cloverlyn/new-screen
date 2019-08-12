@@ -24,9 +24,9 @@ function Rightb(props) {
           type: 'pie',
           radius: [2, '55%'],
           center: ['50%', '50%'],
-          startAngle:200,
+          startAngle: 200,
           roseType: 'radius',
-          color: ['#04f0c4', '#48d9ff', '#6ee624', '#8d14ff', '#bc10e0','#5c43fe'],
+          color: ['#04f0c4', '#48d9ff', '#6ee624', '#8d14ff', '#bc10e0', '#5c43fe'],
 
           data: temp,
           label: {
@@ -83,23 +83,17 @@ function Rightb(props) {
           animationType: 'scale',
         }]
       });
-    }else {
+    } else {
       setOptions({});
     }
 
   }, [areaStreetDetail]);
   return (
-    <div style={{ flex: '1' }}>
-      <div id={'chart'} className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
-        <img src={imgUrl} alt={'#'} style={{marginLeft:'30px'}}/>
-        {/*<strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>监察数据统计</strong>*/}
-        <strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>街道案件大类统计</strong>
-        <ReactEcharts
-          option={options}
-          style={{ width: '600px', height: '550px' ,marginTop:'50px' }}
-        />
-      </div>
-
+    <div>
+      <ReactEcharts
+        option={options}
+        style={{ width: '600px', height: '550px', marginTop: '50px' }}
+      />
     </div>
   );
 }

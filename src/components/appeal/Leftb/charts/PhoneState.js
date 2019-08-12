@@ -10,14 +10,14 @@ class AreaDept extends React.Component {
     const { areaStreet } = this.props;
     if (areaStreet) {
       return {
-        tooltip : {
+        tooltip: {
           trigger: 'axis'
         },
         legend: {
-          data:['总工单','转办办结工单'],
-          textStyle:{
-            color:'#00eaff',
-            fontSize:18
+          data: ['总工单', '转办办结工单'],
+          textStyle: {
+            color: '#00eaff',
+            fontSize: 18
           },
         },
         grid: {
@@ -28,15 +28,15 @@ class AreaDept extends React.Component {
           containLabel: true
         },
         toolbox: {
-          show : true,
-        
+          show: true,
+
         },
-        calculable : true,
-        xAxis : [
+        calculable: true,
+        xAxis: [
           {
-            type : 'category',
+            type: 'category',
             //data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
-            data:areaStreet.map(item =>{
+            data: areaStreet.map(item => {
               return item.deptName
             }),
             axisLine: {
@@ -45,51 +45,51 @@ class AreaDept extends React.Component {
                 color: '#00eaff',
               }
             },
-            axisLabel:{
-              rotate:40,
-              textStyle:{
+            axisLabel: {
+              rotate: 40,
+              textStyle: {
                 fontSize: 18
               }
             },
           }
         ],
-        yAxis : [
+        yAxis: [
           {
-            type : 'value',
+            type: 'value',
             axisLine: {
               show: true,
               lineStyle: {
                 color: '#00eaff',
               }
             },
-            axisLabel:{
-              textStyle:{
+            axisLabel: {
+              textStyle: {
                 fontSize: 18
               }
             },
           }
         ],
-        series : [
+        series: [
           {
-            name:'总工单',
-            type:'bar',
-            itemStyle:{
+            name: '总工单',
+            type: 'bar',
+            itemStyle: {
               color: '#00FFE6'
             },
             //data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
-            data:areaStreet.map(item =>{
+            data: areaStreet.map(item => {
               return item.distributeCount
             }),
 
           },
           {
-            name:'转办办结工单',
-            type:'bar',
-            itemStyle:{
-              color: '#de2a99'
+            name: '转办办结工单',
+            type: 'bar',
+            itemStyle: {
+              color: '#bc10e0'
             },
             //data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-            data:areaStreet.map(item =>{
+            data: areaStreet.map(item => {
               return item.distributeFinish
             }),
           }
@@ -100,8 +100,8 @@ class AreaDept extends React.Component {
 
   chartDetails = e => {
     var id;
-    this.props.areaStreet.map(item =>{
-      if(item.deptName === e.name)
+    this.props.areaStreet.map(item => {
+      if (item.deptName === e.name)
         id = item.deptId;
     })
     this.props.dispatch({
@@ -110,11 +110,17 @@ class AreaDept extends React.Component {
         areaId: id,
       },
     });
+    this.props.dispatch({
+      type: 'appeal/save',
+      payload: {
+        partName: e.name,
+      },
+    });
   };
 
 
   render() {
-    // const {deptName} = this.props;
+    const {partName} = this.props;
     return (
       <div className={styles.mainContainer} style={{ marginTop: '60px', width: '100%' }}>
 
@@ -128,7 +134,15 @@ class AreaDept extends React.Component {
           />
         </div>
         <div className={styles.circle}>
-          <Circle />
+          <div style={{ flex: '1' }}>
+            <div id={'chart'} className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
+              <img src={imgUrl} alt={'#'} style={{ marginLeft: '30px' }} />
+
+              <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>{partName}案件大类统计</strong>
+              <Circle />
+            </div>
+
+          </div>
         </div>
       </div>
     );
@@ -138,6 +152,6 @@ class AreaDept extends React.Component {
 
 export default connect(({ appeal }) => ({
   areaStreet: appeal.areaStreet,
-  // deptName: appeal.deptName,
+  partName: appeal.partName,
 }))(AreaDept);
 

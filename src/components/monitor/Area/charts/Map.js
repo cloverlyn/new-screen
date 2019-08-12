@@ -61,7 +61,7 @@ class Map extends React.Component {
             return (
               '<span style="color:#00eaff ; font: 18px Microsoft YaHei ; text-align: center">' + params.name + ':' + '</span><br/>'
               + '<ol>'
-              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' +'</span>'
+              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' + '</span>'
               + '<span style="color:#de2a99 ; float: left ; padding-left: 10px">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
               // + '<strong style="color:#0093fc">' + '●' + '</strong>' + params.value[3] + '%<br/>'
               + '</ol>'
@@ -172,7 +172,7 @@ class Map extends React.Component {
               caseTotal.map((item, index) => {
                 if (index === 0) {
                   return (
-                    <div style={{ borderStyle: 'groove', borderColor: 'rgba(31, 80, 190, 0.75)', width: '80%', marginLeft: '10%', borderWidth: '10px'}}>
+                    <div style={{ borderStyle: 'groove', borderColor: 'rgba(31, 80, 190, 0.75)', width: '80%', marginLeft: '10%', borderWidth: '10px' }}>
                       <div style={{ fontSize: '30px', textAlign: 'center' }}>
                         总计工单：
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_1} />
@@ -189,7 +189,7 @@ class Map extends React.Component {
                 }
                 else {
                   return (
-                    <div style={{ borderStyle: 'groove', borderColor: 'rgba(31, 80, 190, 0.75)', width: '80%', marginLeft: '10%',  borderWidth: '10px', marginTop:'20px'}}>
+                    <div style={{ borderStyle: 'groove', borderColor: 'rgba(31, 80, 190, 0.75)', width: '80%', marginLeft: '10%', borderWidth: '10px', marginTop: '20px' }}>
                       <div style={{ fontSize: '30px', textAlign: 'center' }}>
                         本年工单：
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
@@ -210,24 +210,24 @@ class Map extends React.Component {
           </div>
 
           <div style={{ marginTop: '150px' }}>
-            <div style = {{fontSize: '3.1vh', color: 'rgba(255, 255, 255, 0.67)'}} >事发区域数据统计</div>
+            <div style={{ fontSize: '3.1vh', color: 'rgba(255, 255, 255, 0.67)' }} >事发区域数据统计</div>
 
             <ReactEcharts
               option={this.options}
               style={{ width: '99%', height: '600px' }}
               onEvents={{ click: this.chartDetails }}
             />
-            <ol style={{float: 'left' , marginLeft:'100px'}}>
+            <ol style={{ float: 'left', marginLeft: '100px' }}>
               <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
 
               <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>
 
             </ol>
+
+            <City />
             <strong style={{ float: 'right', marginRight: '50px', marginTop: '100px', fontSize: 32 }}>{deptName}案件大类
               <p style={{ float: 'right', color: '#00eaff', fontSize: 32 }}>(单位：个)</p>
             </strong>
-
-            <City />
 
           </div>
         </div>
