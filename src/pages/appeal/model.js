@@ -77,7 +77,7 @@ export default {
         put({ type: 'handleRightTop' }),
         put({ type: 'handleRightBottom' }),
         put({ type: 'handlemessageLib' }),
-        put( { type: 'handleAreaDept' }),
+      
       ]);
     },
 
@@ -306,19 +306,6 @@ export default {
         type: 'save',
         payload: {
           caseTypeStatisticsDetail: res.data,
-        },
-      });
-    },
-
-    * handleAreaDept(_, { call, put, select }) {
-      const { deptId, areaId } = yield select(state => state.appeal);
-      const areaDept = yield call(fetchAreaDept,deptId);
-      const areaDeptDetail = yield call(fetchAreaDeptDetail, areaId);
-      yield put({
-        type: 'save',
-        payload: {
-          areaDept: areaDept,
-          areaDeptDetail: areaDeptDetail,
         },
       });
     },
