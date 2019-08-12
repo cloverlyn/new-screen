@@ -10,8 +10,6 @@ function Rightb(props) {
   const { messageLib } = props;
   const [options, setOptions] = useState({});
   useEffect(() => {
-    console.log(messageLib);
-    debugger;
     if (messageLib) {
       const temp = messageLib.map(item => {
         return {

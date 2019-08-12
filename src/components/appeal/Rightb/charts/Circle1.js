@@ -6,97 +6,118 @@ import { connect } from 'react-redux';
 
 //export default function(props) {
 function Rightb(props) {
-  //const { monitorCount } = props;
-  const { messageLib } = props;
+  const { areaDeptDetail, deptName } = props;
   const [options, setOptions] = useState({});
   useEffect(() => {
-    console.log(messageLib);
-    debugger;
-    if (messageLib) {
-      const temp = messageLib.map(item => {
+    if (areaDeptDetail) {
+      const temp = areaDeptDetail.map(item => {
         return {
-          name: item.deptName,
-          value: item.count,
+          name: item.caseTypeName,
+          value: item.caseCount,
         }
       });
       setOptions({
+        color: ['#04f0c4', '#48d9ff', '#6ee624', '#8d14ff', '#bc10e0', '#5d44ff', '#54FEFE', '#0097EE', '#3D4969', '#35CEBA'],
+        tooltip: {
+          trigger: 'item',
+          formatter: "{b} : {c} ({d}%)"
+        },
         series: [{
           type: 'pie',
-          radius: [2, '55%'],
-          center: ['50%', '50%'],
-          startAngle:200,
-          roseType: 'radius',
-          color: ['#04f0c4', '#48d9ff', '#6ee624', '#8d14ff', '#bc10e0','#5c43fe'],
-
-          data: temp,
+          radius: ['24%', '70%'],
+          roseType: 'area',
           label: {
             normal: {
-              formatter: "{b|{b}}:{c|{c}}\n{per|{d}%} ",
-              backgroundColor: "rgba(255, 147, 38, 0)",
-              borderColor: "transparent",
-              borderRadius: 4,
+              show: true,
+              formatter: '{b|{b}}\n{hr|}\n{d|占比{d}%}',
               rich: {
-                a: {
-                  lineHeight: 22,
-                  align: "center"
+                b: {
+                  fontSize: 20,
+                  color: 'rgba(255,255,255,0.8)',
+                  align: 'center',
+                  padding: 6
                 },
                 hr: {
-                  borderColor: "#aaa",
-                  width: "100%",
+                  borderColor: '#0097EE',
+                  width: '100%',
                   borderWidth: 1,
                   height: 0
                 },
-                b: {
-                  fontSize: 18,
-                  lineHeight: 33
+                d: {
+                  fontSize: 20,
+                  color: '#fff',
+                  align: 'center',
+                  padding: 6,
                 },
-                c: {
-                  fontSize: 18,
-                  color: "#eee"
-                },
-                per: {
-                  fontSize: 18,
-                  //padding: [5, 8],
-                  borderRadius: 1
-                }
               },
-              textStyle: {
-                color: "#fff",
-                fontSize: 18
-              }
+              position: 'outside'
+            },
+            emphasis: {
+              show: true
             }
           },
           labelLine: {
             normal: {
-              smooth: true,
+              show: true,
+              length: 1,
               lineStyle: {
-                width: 2
-              }
+                color: '#0097EE',
+                width: 1
+              },
+            },
+            emphasis: {
+              show: true
             }
           },
-          itemStyle: {
+          data: temp,
+        },
+        // 边框的设置
+        {
+          radius: ['16%', '20%'],
+          center: ['50%', '50%'],
+          type: 'pie',
+          label: {
             normal: {
-              shadowBlur: 30,
-              shadowColor: 'rgba(0, 0, 0, 0.4)'
+              show: false
+            },
+            emphasis: {
+              show: false
             }
           },
-          animationType: 'scale',
-        }]
+          labelLine: {
+            normal: {
+              show: false
+            },
+            emphasis: {
+              show: false
+            }
+          },
+          animation: false,
+          tooltip: {
+            show: false
+          },
+          data: [{
+            value: 1,
+            itemStyle: {
+              color: "#3D4969",
+            },
+          }],
+        },
+        ]
       });
-    }else {
+    } else {
       setOptions({});
     }
 
-  }, [messageLib]);
+  }, [areaDeptDetail]);
   return (
     <div style={{ flex: '1' }}>
       <div id={'chart'} className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
-        <img src={imgUrl} alt={'#'} style={{marginLeft:'30px'}}/>
-        {/*<strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>监察数据统计</strong>*/}
-        <strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>信息库引用统计</strong>
+        <img src={imgUrl} alt={'#'} style={{ marginLeft: '30px' }} />
+        <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>区县机关案件大类</strong>
         <ReactEcharts
           option={options}
-          style={{ width: '600px', height: '480px' ,marginTop:'150px' }}
+          style={{ width: '600px', height: '480px', marginTop: '150px' }}
         />
       </div>
 
@@ -104,7 +125,7 @@ function Rightb(props) {
   );
 }
 export default connect(({ appeal }) => ({
-  //monitorCount: appeal.monitorCount,
-  messageLib: appeal.messageLib,
+  areaDeptDetail: appeal.areaDeptDetail,
+  // deptName: appeal.deptName,
 }))(Rightb);
 

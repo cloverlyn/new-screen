@@ -20,6 +20,8 @@ import {
   fetchHistoryData4,
   fetchMessageLib,
   fetchMoreOneCaseTypeResult,
+  fetchAreaDept,
+  fetchAreaDeptDetail,
 } from '@/pages/appeal/service';
 import { firstDataMap } from '@/utils/config';
 
@@ -28,6 +30,7 @@ export default {
   state: {
     typeId: '145273',
     deptId:'',
+    areaId: '051',
     name: '规划房地',
     deptName: '长沙市',
     caseName: '规划房地',
@@ -54,6 +57,8 @@ export default {
     HistoryData4: [],
     messageLib: [],
     moreOneCaseTypeResult: [],
+    areaDept: [],
+    areaDeptDetail: [],
   },
   reducers: {
     save(state, { payload: data }) {
@@ -72,15 +77,7 @@ export default {
         put({ type: 'handleRightTop' }),
         put({ type: 'handleRightBottom' }),
         put({ type: 'handlemessageLib' }),
-        //put({ type: 'handleUpdate'}),
-        // put({ type: 'handlenoisyEvent1'}),
-        // put({ type: 'handlenoisyEvent2'}),
-        // put({ type: 'handlenoisyEvent3'}),
-        // put({ type: 'handlenoisyEvent4'}),
-        // put({ type: 'handleHistoryDetail1'}),
-        // put({ type: 'handleHistoryDetail2'}),
-        // put({ type: 'handleHistoryDetail3'}),
-        // put({ type: 'handleHistoryDetail4'}),
+        put( { type: 'handleAreaDept' }),
       ]);
     },
 
@@ -157,17 +154,6 @@ export default {
         },
       });
     },
-
-    // * handleCaseTypeStatisticsDetail({ payload: { typeId } }, { call, put }) {
-    //   const res = yield call(fetchCaseTypeStatisticsDetail, typeId);
-    //   yield put({
-    //     type: 'save',
-    //     payload: {
-    //       caseTypeStatisticsDetail: res.caseTypeStatisticsDetail.data,
-    //     },
-    //   });
-    // },
-
 
     * handleLeftBottom(_, { all, call, put, select }) {
       const res = yield all({
@@ -295,9 +281,7 @@ export default {
       const { typeId } = yield select(state => state.appeal);
       const res = yield all({
         TimeHandle: call(fetchTimeHandle),
-
       });
-
       const caseTypeDetail = yield call(fetchCaseTypeStatisticsDetail, typeId);
       const tempTimeHandle = res.TimeHandle.data.map(item => {
         return {
@@ -310,7 +294,7 @@ export default {
         type: 'save',
         payload: {
           caseTypeStatisticsDetail: caseTypeDetail.data,
-          TimeHandle: tempTimeHandle,
+          TimeHandle: tempTimeHandle, 
         },
       });
     },
@@ -326,53 +310,59 @@ export default {
       });
     },
 
-    * handleArea(_, { all, call, put, select }) {
-      //const cityEventByType = yield call(fetchCityEventByType);
-      const { deptId } = yield select(state => state.appeal);
-      // const res = yield all({
-      //   // cityEventByType: call(fetchCityEventByType),
-      //   inTimeHandle: call(fetchInTimeHandle),
-      // });
-      // const tempInTimeHandle = res.inTimeHandle.data.map(item => {
-      //   return {
-      //     ...item,
-      //     name: firstDataMap[item.name],
-      //   };
-      // });
-      const update = yield call(fetchUpdate,deptId);
+    * handleAreaDept(_, { call, put, select }) {
+      const { deptId, areaId } = yield select(state => state.appeal);
+      const areaDept = yield call(fetchAreaDept,deptId);
+      const areaDeptDetail = yield call(fetchAreaDeptDetail, areaId);
+      yield put({
+        type: 'save',
+        payload: {
+          areaDept: areaDept,
+          areaDeptDetail: areaDeptDetail,
+        },
+      });
+    },
 
-       //debugger;
-    //   const tempCity = update.data.map(item => {
-    //     return {
-    //       ...item,
-    //       name: firstDataMap[item.name],
-    //     };
-    // });
+    * handleAreaDept({ payload: { deptId } }, { call, put, select }) {
+      const { areaId } = yield select(state => state.appeal);
+      const res = yield call(fetchAreaDept, deptId);
+      const id = deptId + areaId;
+      const areaDeptDetail = yield call(fetchAreaDeptDetail, id);
+      yield put({
+        type: 'save',
+        payload: {
+          areaDept: res.data,
+          areaDeptDetail: areaDeptDetail.data,
+        },
+      });
+    },
+
+    * handleAreaDeptDetail({ payload: { areaId } }, { call, put }) {
+
+      const res = yield call(fetchAreaDeptDetail, areaId);
+      yield put({
+        type: 'save',
+        payload: {
+          areaDeptDetail: res.data,
+        },
+      });
+    },
+
+    * handleArea(_, { all, call, put, select }) {
+      const { deptId } = yield select(state => state.appeal);
+      const update = yield call(fetchUpdate,deptId);
 
       yield put({
         type: 'save',
         payload: {
-          //cityEventByType: tempCity,
-          // inTimeHandle: tempInTimeHandle,
           update: update,
         },
       });
-
-
     },
 
     * handleUpdate({ payload: { deptId } }, { call, put }) {
-      //const { deptId } = yield select(state => state.appeal);
       const update = yield call(fetchUpdate, deptId);
 
-      // const tempCity = update.data.map(item => {
-      //     return {
-      //       ...item,
-      //       name: firstDataMap[item.name],
-      //     };
-      // });
-
-      //console.log(deptId);
       yield put({
         type: 'save',
         payload: {
@@ -380,26 +370,5 @@ export default {
         },
       });
     },
-
-    // * handlemessageLib(_, {all, call, put}){
-    //   const res = yield all({
-    //     messageLib: call(fetchMessageLib),
-    //   });
-    //
-    //   const tempMess = res.messageLib.data.map(item => {
-    //     return {
-    //       ...item,
-    //       caseName: firstDataMap[item.caseName],
-    //     };
-    //   });
-    //
-    //   yield put({
-    //     type: 'save',
-    //     payload: {
-    //       messageLib: tempMess,
-    //     },
-    //   });
-    // },
-
   },
 };

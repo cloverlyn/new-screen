@@ -189,16 +189,6 @@ export function fetchnoisyEvent4(typeId) {
   });
 }
 
-//噪音处理九区
-// export function fetchCaseTypeOfAreas() {
-//   const { CaseTypeOfAreas } = appealOnlineFinish;
-//   return request(CaseTypeOfAreas, {
-//     header: new Headers({
-//       'Content-Type': 'application/x-www-form-urlencoded',
-//     }),
-//   });
-// }
-
 //历史数据
 export function fetchHistoryData1(typeId) {
   const { HistoryData1 } = appealOnlineFinish;
@@ -238,6 +228,25 @@ export function fetchHistoryData4(typeId) {
 export function fetchMessageLib() {
   const { messageLib } = appealOnlineFinish;
   return request(messageLib, {
+    header: new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }),
+  });
+}
+
+//机关部门
+export function fetchAreaDept(deptId) {
+  const { AreaDept } = appealOnlineFinish;
+  return request(`${AreaDept}?deptId=${deptId}&deptType=5`, {
+    header: new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }),
+  });
+}
+
+export function fetchAreaDeptDetail(areaId) {
+  const { AreaDeptDetail } = appealOnlineFinish;
+  return request(`${AreaDeptDetail}?deptId=${areaId}&deptType=5`, {
     header: new Headers({
       'Content-Type': 'application/x-www-form-urlencoded',
     }),

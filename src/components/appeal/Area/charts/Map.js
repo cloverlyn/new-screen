@@ -155,6 +155,13 @@ class Map extends React.Component {
     }
     );
     this.props.dispatch({
+      type: 'appeal/handleAreaDept',
+      payload: {
+        deptId: id
+      },
+    }
+    );
+    this.props.dispatch({
       type: 'appeal/save',
       payload: {
         deptName: e.name,

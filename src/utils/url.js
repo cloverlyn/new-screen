@@ -21,14 +21,14 @@ export const appealOnlineFinish = {
   noisyEvent2: `${baseUrl}bigScreenPreviewController/queryCaseSubTypeStatisticsOfYear`,
   noisyEvent3: `${baseUrl}bigScreenPreviewController/queryCaseSubTypeStatisticsOfYear1`,
   noisyEvent4: `${baseUrl}bigScreenPreviewController/queryCaseSubTypeStatisticsOfYear1`,
-  // CaseTypeOfAreas: `${baseUrl}bigScreenPreviewController/queryCaseTypeOfAreas?typeId=145273`,
   HistoryData1: `${baseUrl}bigScreenPreviewController/queryHistoryDataOfCaseSubType`,
   HistoryData2: `${baseUrl}bigScreenPreviewController/queryHistoryDataOfCaseSubType`,
   HistoryData3: `${baseUrl}bigScreenPreviewController/queryHistoryDataOfCaseSubType1`,
   HistoryData4: `${baseUrl}bigScreenPreviewController/queryHistoryDataOfCaseSubType1`,
   messageLib:  `${baseUrl}bigScreenPreviewController/queryInfoBaseReference1`,
   MoreOneCaseTypeResult:  `${baseUrl}bigScreenPreviewController/queryMoreOneCaseTypeResult?timeType=1`,
-
+  AreaDept: `${baseUrl}bigScreenPreviewController/queryCaseStatisticsOfAreaStreet`,
+  AreaDeptDetail: `${baseUrl}bigScreenPreviewController/queryCaseTypeStatisticsOfAreaStreet`
   // HistoryData1: `${baseUrl2}history`,
   // HistoryData2: `${baseUrl2}history`,
   // HistoryData3: `${baseUrl2}Event_copy_1563979752939`,

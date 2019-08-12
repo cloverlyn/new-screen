@@ -12,8 +12,6 @@ class Rightb extends React.Component {
     if(deptName === '长沙市'){
       flag = 1;
     }
-    console.log(deptName)
-    debugger
     return (
     <div className={styles.container}>
       {flag ? <Total />: <PhoneState />}

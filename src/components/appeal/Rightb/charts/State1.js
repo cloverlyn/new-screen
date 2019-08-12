@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Circle from './Circle1';
 import ReactEcharts from 'echarts-for-react';
 import imgUrl from '@/assets/dataicon.png';
 import styles from './../index.scss';
 import { connect } from 'react-redux';
 
-class TimeHandle extends React.Component {
+class AreaDept extends React.Component {
   get options() {
-    const { TimeHandle } = this.props;
-    if (TimeHandle) {
+    const { areaDept } = this.props;
+    if (areaDept) {
       return {
         tooltip: {},
         grid: {
@@ -20,7 +20,7 @@ class TimeHandle extends React.Component {
         },
         legend: {
           itemGap: 50,
-          data: ['工单总量', '办结工单量'],
+          data: ['办结工单量', '工单总量'],
           textStyle: {
             color: '#f9f9f9',
             borderColor: '#fff',
@@ -37,6 +37,7 @@ class TimeHandle extends React.Component {
             },
           },
           axisLabel: { //坐标轴刻度标签的相关设置
+            rotate: 60,
             textStyle: {
               color: '#d1e6eb',
               margin: 15,
@@ -46,7 +47,9 @@ class TimeHandle extends React.Component {
           axisTick: {
             show: false,
           },
-          data: ['街道1', '街道2', '街道3', '街道4', '街道5', '街道6', '街道7',],
+          data: areaDept.map(item => {
+            return item.deptName;
+          }),
         }],
         yAxis: [{
           type: 'value',
@@ -74,7 +77,7 @@ class TimeHandle extends React.Component {
           },
         }],
         series: [{
-          name: '工单总量',
+          name: '办结工单量',
           type: 'line',
           // smooth: true, //是否平滑曲线显示
           // 			symbol:'circle',  // 默认是空心圆（中间是白色的），改成实心圆
@@ -103,9 +106,11 @@ class TimeHandle extends React.Component {
           tooltip: {
             show: false
           },
-          data: [393, 438, 485, 631, 689, 824, 987]
+          data: areaDept.map(item => {
+            return item.distributeFinish;
+          }),
         }, {
-          name: '办结工单量',
+          name: '工单总量',
           type: 'bar',
           barWidth: 20,
           tooltip: {
@@ -126,22 +131,41 @@ class TimeHandle extends React.Component {
               }
             }
           },
-          data: [200, 382, 102, 267, 186, 315, 316]
+          data: areaDept.map(item => {
+            return item.distributeCount;
+          }),
         }]
       }
     }
   }
 
+  chartDetails = e => {
+    var id;
+    this.props.areaDept.map(item =>{
+      if(item.deptName === e.name)
+        id = item.deptId;
+    })
+    this.props.dispatch({
+      type: 'appeal/handleAreaDeptDetail',
+      payload: {
+        areaId: id,
+      },
+    });
+  };
+
+
   render() {
+    // const {deptName} = this.props;
     return (
       <div className={styles.mainContainer} style={{ marginTop: '60px', width: '100%' }}>
 
         <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
           <img src={imgUrl} alt={'#'} />
-          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>实时街道办结案件</strong>
+          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>区县机关部门办结案件</strong>
           <ReactEcharts
             option={this.options}
             style={{ width: '600px', height: '480px', marginTop: '150px' }}
+            onEvents={{ click: this.chartDetails }}
           />
         </div>
         <div className={styles.circle}>
@@ -154,7 +178,7 @@ class TimeHandle extends React.Component {
 
 
 export default connect(({ appeal }) => ({
-  TimeHandle: appeal.TimeHandle,
-  partName: appeal.partName,
-}))(TimeHandle);
+  areaDept: appeal.areaDept,
+  // deptName: appeal.deptName,
+}))(AreaDept);
 
