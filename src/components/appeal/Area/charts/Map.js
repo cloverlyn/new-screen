@@ -243,16 +243,8 @@ class Map extends React.Component {
         <LeftTop />
         <div className={styles.container}>
           <button className={styles.title} style={{ background: 'none', border: 'none', textAlign: 'left' }} onClick={this.handClick}>事发区域数据统计</button>
-          <div style={{ marginBottom: '150px' }}>
-            {/* <ol>
-              <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
-              <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong> */}
-              {/*<img src={point2} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结率  </strong>*/}
-            {/* </ol> */}
-            {/*<ol>*/}
-            {/*  <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>*/}
-            {/*  <img src={point4} alt={'#'} /><strong style={{ color: '#00eaff' }}>转办工单办结率</strong>*/}
-            {/*</ol>*/}
+          <div>
+
 
             <ReactEcharts
               option={this.options}
@@ -260,10 +252,8 @@ class Map extends React.Component {
               onEvents={{ click: this.chartDetails }}
             />
 
-
-
             <City />
-            <strong style={{ float: 'right', marginRight: '50px', marginTop: '30px', fontSize: 32 }}>{deptName}案件类型
+            <strong style={{ float: 'right', marginRight: '50px', fontSize: 32 }}>{deptName}案件类型
         <p style={{ float: 'right', color: '#00eaff', marginBottom: '30px', fontSize: 32 }}>(单位：个)</p>
             </strong>
 

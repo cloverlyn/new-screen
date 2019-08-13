@@ -179,7 +179,7 @@ class Map extends React.Component {
                 if (index === 0) {
                   return (
                     <div>
-                      <div className = {styles.number} style={{ marginLeft: '50px', fontSize: '30px', textAlign: 'left' }}>
+                      <div className = {styles.number} style={{ marginLeft: '20px', fontSize: '30px', textAlign: 'left' }}>
                         总受理量：
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_2} />
@@ -190,7 +190,7 @@ class Map extends React.Component {
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_7} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_8} />
                       </div>
-                      <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
+                      <div className = {styles.number} style={{ marginLeft: '100px',fontSize: '30px', textAlign: 'right' }}>
                         总转办量：
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_2} />
@@ -207,7 +207,7 @@ class Map extends React.Component {
                 else if(index === 2){
                   return (
                     <div style={{marginTop: '10px' }}>
-                      <div className = {styles.number} style={{ marginLeft: '50px', fontSize: '30px', textAlign: 'left' }}>
+                      <div className = {styles.number} style={{ marginLeft: '20px', fontSize: '30px', textAlign: 'left' }}>
                         本年受理：
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_2} />
@@ -218,7 +218,7 @@ class Map extends React.Component {
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_7} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_8} />
                       </div>
-                      <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
+                      <div className = {styles.number} style={{ marginLeft: '100px',fontSize: '30px', textAlign: 'right' }}>
                         本年转办：
                         <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_2} />

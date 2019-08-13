@@ -21,7 +21,7 @@ class AreaDept extends React.Component {
           },
         },
         grid: {
-          left: '4%',
+          left: '5%',
           top: "12%",
           bottom: "8%",
           right: "5%",
