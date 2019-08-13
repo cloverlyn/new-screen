@@ -45,21 +45,6 @@ class Map extends React.Component {
       return res;
     };
 
-    const tempData = function (data) {
-      let res = [];
-      for (let i = 0; i < data.length; i++) {
-        let geoCoord = geos[data[i].deptName];
-        if (geoCoord) {
-          res.push({
-            name: data[i].deptName,
-            value: data[i].total,
-          });
-        }
-      }
-
-      return res;
-    };
-
     const findMax = (data) => {
       let temp = [];
       for (let i = 0; i < data.length; i++) {
@@ -72,19 +57,23 @@ class Map extends React.Component {
     if (inTimeHandle.length !== 0) {
       return {
         tooltip: {
-          trigger: 'item',
+          // trigger: 'item',
+          show: true,
           formatter: function (params) {
-            return (
-              '<span style="color:#00eaff ; font: 18px Microsoft YaHei ; text-align: center">' + params.name + ':' + '</span><br/>'
-              + '<ol>'
-              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' + '</span>'
-              + '<span style="color:#de2a99 ; float: left ; padding-left: 10px">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
-              // + '<strong style="color:#0093fc">' + '●' + '</strong>' + params.value[3] + '%<br/>'
-              + '</ol>'
-            )
+            console.log(params)
+            debugger
+            if(params.data){
+              return (
+                `${params.name}</br>${params.marker}在线办结工单数：${ params.data.value[2]}</br>${params.marker}转办办结工单数：${params.data.value[4]}`
+              )
+            }
+            else {
+              return;
+          }
           },
           textStyle: {
-            align: 'center'
+            align: 'center',
+            fontSize: 30,
           },
           //alwaysShowContent: true,
         },
@@ -122,10 +111,11 @@ class Map extends React.Component {
         series: [
           {
             name: '事件总计',
-            type: 'scatter',
+            type: 'map',
             coordinateSystem: 'geo',
             data: convertData(inTimeHandle),
-
+            roam: false,
+            geoIndex: 0,
             symbolSize: 25,
             label: {
               normal: {
@@ -142,12 +132,6 @@ class Map extends React.Component {
               },
             },
           },
-          {
-            name: '事件总计',
-            type: 'map',
-            geoIndex: 0,
-            data: tempData(inTimeHandle),
-          }
         ]
       }
     }
@@ -261,12 +245,12 @@ class Map extends React.Component {
               style={{ width: '99%', height: '600px' }}
               onEvents={{ click: this.chartDetails }}
             />
-            <ol style={{ float: 'left', marginLeft: '100px' }}>
+            {/* <ol style={{ float: 'left', marginLeft: '100px' }}>
               <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
 
               <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>
 
-            </ol>
+            </ol> */}
 
             <City />
             <strong style={{ float: 'right', marginRight: '50px', marginTop: '100px', fontSize: 32 }}>{deptName}案件类型
