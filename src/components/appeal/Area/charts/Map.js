@@ -244,11 +244,11 @@ class Map extends React.Component {
         <div className={styles.container}>
           <button className={styles.title} style={{ background: 'none', border: 'none', textAlign: 'left' }} onClick={this.handClick}>事发区域数据统计</button>
           <div style={{ marginBottom: '150px' }}>
-            <ol>
+            {/* <ol>
               <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
-              <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>
+              <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong> */}
               {/*<img src={point2} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结率  </strong>*/}
-            </ol>
+            {/* </ol> */}
             {/*<ol>*/}
             {/*  <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>*/}
             {/*  <img src={point4} alt={'#'} /><strong style={{ color: '#00eaff' }}>转办工单办结率</strong>*/}

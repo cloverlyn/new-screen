@@ -27,7 +27,7 @@ function Satisfaction(props) {
             type: "pie",
             center: ["50%", "50%"],
             radius: ["35%", "48%"],
-            color: ["#FFE400", "#F76F01", "#01A4F7", "#94e3fd"],
+            color: ["#FFE400", "#F76F01", "#01A4F7", "#c07dff"],
             startAngle: 135,
             labelLine: {
               normal: {
