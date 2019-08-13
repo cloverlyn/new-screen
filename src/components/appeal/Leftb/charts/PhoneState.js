@@ -86,7 +86,7 @@ class AreaDept extends React.Component {
             name: '转办办结工单',
             type: 'bar',
             itemStyle: {
-              color: '#bc10e0'
+              color: '#c07dff'
             },
             //data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
             data: areaStreet.map(item => {

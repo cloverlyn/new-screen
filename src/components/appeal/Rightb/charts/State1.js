@@ -84,7 +84,7 @@ class AreaDept extends React.Component {
             name: '转办办结工单',
             type: 'bar',
             itemStyle: {
-              color: '#bc10e0'
+              color: '#c07dff'
             },
             data: areaDept.map(item => {
               return item.distributeFinish

@@ -269,7 +269,7 @@ class Map extends React.Component {
             </ol>
 
             <City />
-            <strong style={{ float: 'right', marginRight: '50px', marginTop: '100px', fontSize: 32 }}>{deptName}案件大类
+            <strong style={{ float: 'right', marginRight: '50px', marginTop: '100px', fontSize: 32 }}>{deptName}案件类型
               <p style={{ float: 'right', color: '#00eaff', fontSize: 32 }}>(单位：个)</p>
             </strong>
 
