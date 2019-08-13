@@ -44,6 +44,22 @@ class Map extends React.Component {
 
       return res;
     };
+
+    const tempData = function (data) {
+      let res = [];
+      for (let i = 0; i < data.length; i++) {
+        let geoCoord = geos[data[i].deptName];
+        if (geoCoord) {
+          res.push({
+            name: data[i].deptName,
+            value: data[i].total,
+          });
+        }
+      }
+
+      return res;
+    };
+
     const findMax = (data) => {
       let temp = [];
       for (let i = 0; i < data.length; i++) {
@@ -77,7 +93,7 @@ class Map extends React.Component {
           max: findMax(inTimeHandle),
           calculable: true,
           inRange: {
-            color: ['#33FF33', '#FFFF00', '#CC0000'],
+            color: ['#94e3fd', '#02bcf9', '#006edd'],
           },
           textStyle: {
             color: '#fff',
@@ -93,7 +109,7 @@ class Map extends React.Component {
           },
           itemStyle: {
             normal: {
-              areaColor: '#0067ee',
+              // areaColor: '#0067ee',
               borderColor: '#111',
             },
             emphasis: {
@@ -125,6 +141,12 @@ class Map extends React.Component {
                 borderWidth: 1,
               },
             },
+          },
+          {
+            name: '事件总计',
+            type: 'map',
+            geoIndex: 0,
+            data: tempData(inTimeHandle),
           }
         ]
       }
