@@ -84,7 +84,7 @@ class AreaDept extends React.Component {
             name: '转办办结工单',
             type: 'bar',
             itemStyle: {
-              color: '#bc10e0'
+              color: '#c07dff'
             },
             data: areaDept.map(item => {
               return item.distributeFinish
@@ -118,13 +118,13 @@ class AreaDept extends React.Component {
 
 
   render() {
-    const {areaName} = this.props;
+    const {areaName, deptName} = this.props;
     return (
       <div className={styles.mainContainer} style={{ marginTop: '60px', width: '100%' }}>
 
         <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
           <img src={imgUrl} alt={'#'} />
-          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>区县机关部门工单统计</strong>
+          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>{deptName}机关部门工单统计</strong>
           <ReactEcharts
             option={this.options}
             style={{ width: '600px', height: '520px', marginTop: '150px' }}
@@ -150,5 +150,6 @@ class AreaDept extends React.Component {
 export default connect(({ appeal }) => ({
   areaDept: appeal.areaDept,
   areaName: appeal.areaName,
+  deptName: appeal.deptName,
 }))(AreaDept);
 

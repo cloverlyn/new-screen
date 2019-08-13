@@ -21,7 +21,7 @@ class AreaDept extends React.Component {
           },
         },
         grid: {
-          left: '4%',
+          left: '5%',
           top: "12%",
           bottom: "8%",
           right: "5%",
@@ -86,7 +86,7 @@ class AreaDept extends React.Component {
             name: '转办办结工单',
             type: 'bar',
             itemStyle: {
-              color: '#bc10e0'
+              color: '#c07dff'
             },
             //data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
             data: areaStreet.map(item => {
@@ -120,13 +120,13 @@ class AreaDept extends React.Component {
 
 
   render() {
-    const {partName} = this.props;
+    const {partName, deptName} = this.props;
     return (
       <div className={styles.mainContainer} style={{ marginTop: '60px', width: '100%' }}>
 
         <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
           <img src={imgUrl} alt={'#'} />
-          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>街道工单统计</strong>
+          <strong style={{ color: "#00eaff", 'font-size': '1.6vh', marginBottom: '100px' }}>{deptName}街道工单统计</strong>
           <ReactEcharts
             option={this.options}
             style={{ width: '600px', height: '480px', marginTop: '150px' }}
@@ -153,5 +153,6 @@ class AreaDept extends React.Component {
 export default connect(({ appeal }) => ({
   areaStreet: appeal.areaStreet,
   partName: appeal.partName,
+  deptName: appeal.deptName,
 }))(AreaDept);
 

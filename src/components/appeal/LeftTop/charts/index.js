@@ -118,7 +118,7 @@ function LeftTop(props) {
   return (
     <ReactEcharts
       option={options1}
-      style={{ width: '99%', height: '99%', padding: '1vh', marginLeft: '20px' }}
+      style={{ width: '99%', height: '89%', padding: '1vh', marginLeft: '20px' }}
     />
   );
 }

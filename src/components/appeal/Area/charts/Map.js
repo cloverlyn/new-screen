@@ -42,6 +42,22 @@ class Map extends React.Component {
 
       return res;
     };
+
+    const tempData = function (data) {
+      let res = [];
+      for (let i = 0; i < data.length; i++) {
+        let geoCoord = geos[data[i].deptName];
+        if (geoCoord) {
+          res.push({
+            name: data[i].deptName,
+            value: data[i].total,
+          });
+        }
+      }
+
+      return res;
+    };
+
     const findMax = (data) => {
       let temp = [];
       for (let i = 0; i < data.length; i++) {
@@ -54,26 +70,23 @@ class Map extends React.Component {
     if (inTimeHandle.length !== 0) {
       return {
         tooltip: {
-          trigger: 'item',
+          // trigger: 'item',
+          show: true,
           formatter: function (params) {
-            return (
-
-              '<span style="color:#00eaff ; font: 18px Microsoft YaHei">' + params.name + ':' + '</span><br/>'
-              + '<ol>'
-              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' + '</span>'
-              + '<span style="color:#de2a99 ; float: left ; padding-left: 10px">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
-              // + '<span style="color:#0093fc ; text-align: left">' + '●' + '<span style="color:#fff">' + params.value[3] + '</span>' + '</span>' + '%<br/>'
-              + '</ol>'
-              //
-              // +'<ol>'
-              // + '<span style="color:#de2a99 ; float: left"">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
-              // + '<span style="color:#863bf3 ; text-align: left">' + '●' + '<span style="color:#fff">' + params.value[5] + '</span>'+ '</span>'  + '%'
-              // + '</ol>'
-
-            )
+            // console.log(params)
+            // debugger
+            if(params.data){
+              return (
+                `${params.name}</br>${params.marker}在线办结工单数：${ params.data.value[2]}</br>${params.marker}转办工单数：${params.data.value[4]}`
+              )
+            }
+            else {
+              return;
+          }
           },
           textStyle: {
-            align: 'center'
+            align: 'center',
+            fontSize: 30,
           },
           //alwaysShowContent: true,
         },
@@ -82,7 +95,7 @@ class Map extends React.Component {
           max: findMax(inTimeHandle),
           calculable: true,
           inRange: {
-            color: ['#33FF33', '#FFFF00', '#CC0000'],
+            color: ['#94e3fd', '#02bcf9', '#006edd'],
           },
           textStyle: {
             color: '#fff',
@@ -98,7 +111,7 @@ class Map extends React.Component {
           },
           itemStyle: {
             normal: {
-              areaColor: '#0067ee',
+              // areaColor: '#0067ee',
               borderColor: '#111',
             },
             emphasis: {
@@ -111,10 +124,11 @@ class Map extends React.Component {
         series: [
           {
             name: '事件总计',
-            type: 'scatter',
+            type: 'map',
             coordinateSystem: 'geo',
             data: convertData(inTimeHandle),
-
+            roam: false,
+            geoIndex: 0,
             symbolSize: 25,
             label: {
               normal: {
@@ -130,7 +144,7 @@ class Map extends React.Component {
                 borderWidth: 1,
               },
             },
-          }
+          },
         ]
       }
     }
@@ -138,7 +152,6 @@ class Map extends React.Component {
       return {};
     }
   }
-
   chartDetails = e => {
     var id;
     for (let i = 0; i < this.props.inTimeHandle.length; i++) {
@@ -172,6 +185,7 @@ class Map extends React.Component {
       type: 'appeal/save',
       payload: {
         deptName: e.name,
+        aName: e.name,
         partName: '区县街道',
         areaName: '区县机关部门'
       },
@@ -224,22 +238,15 @@ class Map extends React.Component {
 
   render() {
     const { deptName } = this.props;
+    const { inTimeHandle } = this.props;
+
     return (
       <div className={SStyle.container}>
 
         <LeftTop />
         <div className={styles.container}>
           <button className={styles.title} style={{ background: 'none', border: 'none', textAlign: 'left' }} onClick={this.handClick}>事发区域数据统计</button>
-          <div style={{ marginBottom: '150px' }}>
-            <ol>
-              <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
-              <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>
-              {/*<img src={point2} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结率  </strong>*/}
-            </ol>
-            {/*<ol>*/}
-            {/*  <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>*/}
-            {/*  <img src={point4} alt={'#'} /><strong style={{ color: '#00eaff' }}>转办工单办结率</strong>*/}
-            {/*</ol>*/}
+          <div>
 
             <ReactEcharts
               option={this.options}
@@ -248,11 +255,24 @@ class Map extends React.Component {
             />
 
 
+            {
+              inTimeHandle.map((item,index) => {
+                if(deptName === item.deptName){
+                  return (
+                    <strong style={{color: '#00eaff', fontSize: 32 , marginLeft:'100px'}}>
+                      {deptName}工单总数：{item.total}
+                    </strong>
+                  )
+                }
+
+              })
+            }
+
+            <strong style={{ float: 'right', marginRight: '50px', marginTop: '100px' , fontSize: 32 }}>{deptName}案件类型
+              <p style={{ float: 'right', color: '#00eaff', fontSize: 32 }}>(单位：个)</p>
+            </strong>
 
             <City />
-            <strong style={{ float: 'right', marginRight: '50px', marginTop: '30px', fontSize: 32 }}>{deptName}案件大类
-        <p style={{ float: 'right', color: '#00eaff', marginBottom: '30px', fontSize: 32 }}>(单位：个)</p>
-            </strong>
 
           </div>
         </div>

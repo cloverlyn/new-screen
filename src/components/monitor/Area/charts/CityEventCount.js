@@ -155,7 +155,7 @@ function CityEventByType(props) {
     <div>
       <ReactEcharts
         option={options}
-        style={{ width: '99%', height: '800px' }}
+        style={{ width: '99%', height: '900px' }}
       />
     </div>
   );

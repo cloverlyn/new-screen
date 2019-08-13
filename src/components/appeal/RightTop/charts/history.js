@@ -87,13 +87,13 @@ function History(props) {
           itemWidth: 18, itemHeight: 12, textStyle: { color: "#fff", fontSize: 18 },
         },
         color: colors,
-        grid: { left: '2%', top: "12%", bottom: "5%", right: "5%", containLabel: true },
+        grid: { left: '6%', top: "12%", bottom: "5%", right: "5%", containLabel: true },
         tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
         xAxis: [
           {
             type: 'category',
             axisLine: { show: true, lineStyle: { color: '#00eaff' } },
-            axisLabel: { interval: 0, rotate: 40, textStyle: { color: '#00eaff', fontSize: 18 } },
+            axisLabel: { interval: 0, rotate: 45, textStyle: { color: '#00eaff', fontSize: 18 } },
             axisTick: { show: false },
             data: xAxisData,
           },
@@ -117,7 +117,7 @@ function History(props) {
     <div>
       <ReactEcharts
         option={options}
-        style={{ width: '600px', height: '800px' }} />
+        style={{ width: '600px', height: '700px' }} />
     </div>
   );
 }

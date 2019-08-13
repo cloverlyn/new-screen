@@ -151,7 +151,7 @@ class DistributeEvent extends React.Component {
           <strong style={{ color: "#00eaff", fontSize: '1.6vh' }}>转办工单案件大类统计</strong>
           <ReactEcharts
             option={this.options}
-            style={{ width: '550px', height: '800px', marginTop: '10px' }}
+            style={{ width: '550px', height: '700px', marginTop: '10px' }}
             onEvents={{ click: this.chartDetails }} />
         </div>
 

@@ -9,7 +9,6 @@ function CityEventByType(props) {
   useEffect(() => {
     if (cityEventByType) {
       setOptions({
-
         grid: {
           left: '3%',
           right: '4%',
@@ -155,7 +154,7 @@ function CityEventByType(props) {
     <div>
       <ReactEcharts
         option={options}
-        style={{ width: '99%', height: '800px', marginTop: '200px' }}
+        style={{ width: '99%', height: '900px' }}
       />
     </div>
   );

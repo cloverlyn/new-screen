@@ -19,7 +19,7 @@ class LeftTop extends React.Component {
         series: [
           {
             type: 'pie',
-            radius: '55%',
+            radius: '60%',
             center: ['50%', '60%'],
             startAngle: 120,
             label: {
@@ -98,17 +98,17 @@ class LeftTop extends React.Component {
       <div className={styles.container}>
         <div className={styles.title}>在线办结案件</div>
         <div className={styles.mainContainer}>
-          <div style={{ width: '100%', marginTop: '50px' }}>
+          <div style={{ width: '100%' }}>
             <img src={imgUrl} alt="" />
             <strong style={{ color: '#00eaff', fontSize: '1.6vh' }}>各案件大类数据统计</strong>
             <ReactEcharts
               option={this.options}
-              style={{ width: '550px', height: '69%' }}
+              style={{ width: '580px', height: '69%' }}
               onEvents={{ click: this.chartDetails }}
             />
           </div>
 
-          <div style={{ opacity: 0.9, width: '800px', height: '800px' }}>
+          <div style={{ opacity: 0.9, width: '580px', height: '700px' }}>
             <img src={imgUrl} alt="" />
             <strong style={{ color: '#00eaff', fontSize: '1.6vh'}}>
               {name}案件类概况

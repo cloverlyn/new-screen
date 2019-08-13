@@ -44,6 +44,7 @@ class Map extends React.Component {
 
       return res;
     };
+
     const findMax = (data) => {
       let temp = [];
       for (let i = 0; i < data.length; i++) {
@@ -56,19 +57,21 @@ class Map extends React.Component {
     if (inTimeHandle.length !== 0) {
       return {
         tooltip: {
-          trigger: 'item',
+          // trigger: 'item',
+          show: true,
           formatter: function (params) {
-            return (
-              '<span style="color:#00eaff ; font: 18px Microsoft YaHei ; text-align: center">' + params.name + ':' + '</span><br/>'
-              + '<ol>'
-              + '<span style="color:#00eaff ; float: left">' + '●' + '<span style="color:#fff">' + params.value[2] + '</span>' + '</span>'
-              + '<span style="color:#de2a99 ; float: left ; padding-left: 10px">' + '●' + '<span style="color:#fff">' + params.value[4] + '</span>' + '</span>'
-              // + '<strong style="color:#0093fc">' + '●' + '</strong>' + params.value[3] + '%<br/>'
-              + '</ol>'
-            )
+            if(params.data){
+              return (
+                `${params.name}</br>${params.marker}在线办结工单数：${ params.data.value[2]}</br>${params.marker}转办工单数：${params.data.value[4]}`
+              )
+            }
+            else {
+              return;
+          }
           },
           textStyle: {
-            align: 'center'
+            align: 'center',
+            fontSize: 30,
           },
           //alwaysShowContent: true,
         },
@@ -77,7 +80,7 @@ class Map extends React.Component {
           max: findMax(inTimeHandle),
           calculable: true,
           inRange: {
-            color: ['#33FF33', '#FFFF00', '#CC0000'],
+            color: ['#94e3fd', '#02bcf9', '#006edd'],
           },
           textStyle: {
             color: '#fff',
@@ -93,7 +96,7 @@ class Map extends React.Component {
           },
           itemStyle: {
             normal: {
-              areaColor: '#0067ee',
+              // areaColor: '#0067ee',
               borderColor: '#111',
             },
             emphasis: {
@@ -106,10 +109,11 @@ class Map extends React.Component {
         series: [
           {
             name: '事件总计',
-            type: 'scatter',
+            type: 'map',
             coordinateSystem: 'geo',
             data: convertData(inTimeHandle),
-
+            roam: false,
+            geoIndex: 0,
             symbolSize: 25,
             label: {
               normal: {
@@ -125,7 +129,7 @@ class Map extends React.Component {
                 borderWidth: 1,
               },
             },
-          }
+          },
         ]
       }
     }
@@ -161,7 +165,6 @@ class Map extends React.Component {
     const { deptName } = this.props;
     const { caseTotal } = this.props;
 
-
     return (
       <div className={SStyle.container}>
 
@@ -173,7 +176,7 @@ class Map extends React.Component {
                 if (index === 0) {
                   return (
                     <div>
-                      <div className = {styles.number} style={{ marginLeft: '50px', fontSize: '30px', textAlign: 'left' }}>
+                      <div className = {styles.number} style={{ marginLeft: '20px', fontSize: '30px', textAlign: 'left' }}>
                         总受理量：
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_2} />
@@ -184,7 +187,7 @@ class Map extends React.Component {
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_7} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[0].digit_8} />
                       </div>
-                      <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
+                      <div className = {styles.number} style={{ marginLeft: '100px',fontSize: '30px', textAlign: 'right' }}>
                         总转办量：
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[1].digit_2} />
@@ -201,7 +204,7 @@ class Map extends React.Component {
                 else if(index === 2){
                   return (
                     <div style={{marginTop: '10px' }}>
-                      <div className = {styles.number} style={{ marginLeft: '50px', fontSize: '30px', textAlign: 'left' }}>
+                      <div className = {styles.number} style={{ marginLeft: '20px', fontSize: '30px', textAlign: 'left' }}>
                         本年受理：
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_2} />
@@ -212,7 +215,7 @@ class Map extends React.Component {
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_7} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[2].digit_8} />
                       </div>
-                      <div className = {styles.number} style={{ marginLeft: '300px',fontSize: '30px', textAlign: 'right' }}>
+                      <div className = {styles.number} style={{ marginLeft: '100px',fontSize: '30px', textAlign: 'right' }}>
                         本年转办：
                         <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_1} />
                         <CountUp className={styles.letter} start={0} end={caseTotal[3].digit_2} />
@@ -239,17 +242,19 @@ class Map extends React.Component {
               style={{ width: '99%', height: '600px' }}
               onEvents={{ click: this.chartDetails }}
             />
-            <ol style={{ float: 'left', marginLeft: '100px' }}>
+            {/* <ol style={{ float: 'left', marginLeft: '100px' }}>
               <img src={point1} alt={'#'} /><strong style={{ color: '#00eaff' }}>在线办结工单数  </strong>
 
               <img src={point3} alt={'#'} /><strong style={{ color: '#00eaff', paddingRight: '30px' }}>转办工单数  </strong>
 
-            </ol>
+            </ol> */}
 
-            <City />
-            <strong style={{ float: 'right', marginRight: '50px', marginTop: '100px', fontSize: 32 }}>{deptName}案件大类
+            <strong style={{ float: 'right', marginRight: '50px' , fontSize: 32 }}>{deptName}案件类型
               <p style={{ float: 'right', color: '#00eaff', fontSize: 32 }}>(单位：个)</p>
             </strong>
+
+            <City />
+
 
           </div>
         </div>
