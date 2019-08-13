@@ -21,8 +21,7 @@ class Appeal extends React.Component {
           caseName: '规划房地',
           partName: '区县街道',
           areaName: '区县机关部门',
-          deptNum1: '',
-          deptNum2: '',
+          aName: '区县',
         },
       });
     

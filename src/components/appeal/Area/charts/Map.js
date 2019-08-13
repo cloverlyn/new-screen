@@ -185,6 +185,7 @@ class Map extends React.Component {
       type: 'appeal/save',
       payload: {
         deptName: e.name,
+        aName: e.name,
         partName: '区县街道',
         areaName: '区县机关部门'
       },
