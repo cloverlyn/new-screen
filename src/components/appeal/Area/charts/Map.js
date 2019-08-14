@@ -186,6 +186,8 @@ class Map extends React.Component {
       payload: {
         deptName: e.name,
         aName: e.name,
+        name: '',
+        caseName: '',
         partName: '区县街道',
         areaName: '区县机关部门'
       },
@@ -217,8 +219,8 @@ class Map extends React.Component {
       type: 'appeal/save',
       payload: {
         deptName: '长沙市',
-        name: '规划房地',
-        caseName: '规划房地',
+        name: '',
+        caseName: '',
       },
     });
 
@@ -256,7 +258,7 @@ class Map extends React.Component {
 
 
             {
-              inTimeHandle.map((item,index) => {
+              inTimeHandle.map((item) => {
                 if(deptName === item.deptName){
                   return (
                     <strong style={{color: '#00eaff', fontSize: 32 , marginLeft:'100px'}}>

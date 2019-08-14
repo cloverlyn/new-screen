@@ -16,9 +16,9 @@ class Appeal extends React.Component {
       this.props.dispatch({
         type: 'appeal/save',
         payload: {
-          name: '规划房地',
+          name: '',
           deptName: '长沙市',
-          caseName: '规划房地',
+          caseName: '',
           partName: '区县街道',
           areaName: '区县机关部门',
           aName: '区县',

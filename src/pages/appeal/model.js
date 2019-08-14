@@ -34,9 +34,9 @@ export default {
     deptId:'',
     areaId: '051',
     areaName: '区县机关部门',
-    name: '规划房地',
+    name: '',
     deptName: '长沙市',
-    caseName: '规划房地',
+    caseName: '',
     partName: '区县街道',
     onLineEvent: [],
     blueSkyCount: [],
@@ -90,10 +90,6 @@ export default {
       //获取左上数据
       const res = yield all({
         CaseTypeStatistics: call(fetchCaseTypeStatistics),
-        // noisyEvent1: call(fetchnoisyEvent1),
-        // noisyEvent2: call(fetchnoisyEvent2),
-        // noisyEvent3: call(fetchnoisyEvent3),
-        // noisyEvent4: call(fetchnoisyEvent4),
       });
 
       const tempCaseTypeStatistics = res.CaseTypeStatistics.data.map((item) => {
@@ -103,18 +99,20 @@ export default {
         };
       });
 
-      //const caseTypeStatisticsDetail = yield call(fetchCaseTypeStatisticsDetail, typeId);
-      const tempnoisyEvent1 = yield call(fetchnoisyEvent1, typeId);
-      const tempnoisyEvent2 = yield call(fetchnoisyEvent2, typeId);
-      const tempnoisyEvent3 = yield call(fetchnoisyEvent3, typeId);
-      const tempnoisyEvent4 = yield call(fetchnoisyEvent4, typeId);
+      const temp = tempCaseTypeStatistics.map(item =>{
+        return item.caseTypeId;
+      })
+
+      const tempnoisyEvent1 = yield call(fetchnoisyEvent1, temp[0]);
+      const tempnoisyEvent2 = yield call(fetchnoisyEvent2, temp[0]);
+      const tempnoisyEvent3 = yield call(fetchnoisyEvent3, temp[0]);
+      const tempnoisyEvent4 = yield call(fetchnoisyEvent4, temp[0]);
 
 
       yield put({
         type: 'save',
         payload: {
           caseTypeStatistics: tempCaseTypeStatistics,
-          //caseTypeStatisticsDetail: caseTypeStatisticsDetail.data,
           noisyEvent1: tempnoisyEvent1.data[0],
           noisyEvent2: tempnoisyEvent2.data[1],
           noisyEvent3: tempnoisyEvent3.data[2],
@@ -213,7 +211,6 @@ export default {
         distributeEvent: call(fetchDistributeEvent),
         monitorCount: call(fetchMonitorCount),
         messageLib: call(fetchMessageLib),
-        //moreOneCaseTypeResult: call(fetchMoreOneCaseTypeResult),
       });
       const tempDis = res.distributeEvent.data.map(item => {
         return {
@@ -221,10 +218,14 @@ export default {
           caseName: firstDataMap[item.caseName],
         };
       });
-      const HistoryData1 = yield call(fetchHistoryData1, typeId);
-      const HistoryData2 = yield call(fetchHistoryData2, typeId);
-      const HistoryData3 = yield call(fetchHistoryData3, typeId);
-      const HistoryData4 = yield call(fetchHistoryData4, typeId);
+
+      const temp = tempDis.map(item =>{
+        return item.typeId;
+      })
+      const HistoryData1 = yield call(fetchHistoryData1, temp[0]);
+      const HistoryData2 = yield call(fetchHistoryData2, temp[0]);
+      const HistoryData3 = yield call(fetchHistoryData3, temp[0]);
+      const HistoryData4 = yield call(fetchHistoryData4, temp[0]);
 
       yield put({
         type: 'save',

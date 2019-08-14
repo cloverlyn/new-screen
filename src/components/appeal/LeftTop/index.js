@@ -125,5 +125,4 @@ class LeftTop extends React.Component {
 export default connect(({ appeal }) => ({
   caseTypeStatistics: appeal.caseTypeStatistics,
   name: appeal.name,
-  // partName: appeal.partName,
 }))(LeftTop);
