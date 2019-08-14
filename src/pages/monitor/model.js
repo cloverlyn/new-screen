@@ -106,6 +106,7 @@ export default {
   effects: {
     * fetch(_, { all, put }) {
       yield all([
+        put({ type: 'handleArea' }),
         put({ type: 'handleHotEvent' }),
         put({ type: 'handleHotEvent1' }),
         put({ type: 'handleInTimeSum' }),
@@ -123,8 +124,7 @@ export default {
         put({ type: 'handleAdviceHandleDept'}),
         put({ type: 'handleAdviceHandleDept1'}),
         put({ type: 'handleCaseTotal'}),
-        put({ type: 'handleArea' }),
-
+        
       ]);
     },
     * handleHotEvent(_, { all, call, put }) {

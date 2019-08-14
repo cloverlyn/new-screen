@@ -11,6 +11,12 @@ class Monitor extends React.Component {
       type: 'monitor/fetch',
     });
     this.props.dispatch({
+      type: 'monitor/save',
+      payload: {
+        deptName: '长沙市',
+      },
+    });
+    this.props.dispatch({
       type: 'appeal/fetch',
     });
     this.props.dispatch({
@@ -34,7 +40,7 @@ class Monitor extends React.Component {
           deptName: '长沙市',
         },
       });
-    }, 5000);
+    }, 3000);
   }
 
   componentWillUnmount() {
