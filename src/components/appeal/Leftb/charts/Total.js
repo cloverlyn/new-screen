@@ -166,13 +166,6 @@ function Total(props) {
             type: 'shadow'
           },
           formatter: "{b0}: {c0}"
-          /*formatter: function(params) {
-              var result = '';
-              params.forEach(function (item) {
-                  result += item.marker + " " + item.seriesName + " : " + item.value +"</br>";
-              });
-              return result;
-          }*/
         },
         xAxis: {
           show: false,                //是否显示x轴
@@ -194,15 +187,10 @@ function Total(props) {
             },
             //定义富文本标签
             rich: {
-              lg: {
-                fontWeight: 'bold',
-                fontSize: 18,       //字体默认12
-                color: '#08C',
-                padding: [0, 5, 0, 0]
-              },
               title: {
                 color: '#fff',
                 fontWeight: 'lighter',
+                fontSize: 18,
                 // borderWidth: 1,
                 // borderColor: '#08c'
                 // textareaBorderColor: '#08c',
@@ -260,150 +248,6 @@ function Total(props) {
             data: xData
           }
         ]
-        //backgroundColor: '#0e2147',
-        // grid: {
-        //   left: '9%',
-        //   top: '12%',
-        //   right: '5%',
-        //   bottom: '8%',
-        //   containLabel: true
-        // },
-        // xAxis: [{
-        //   show: false,
-        // }],
-        // yAxis: [{
-        //   axisTick: 'none',
-        //   axisLine: 'none',
-        //   offset: '27',
-        //   axisLabel: {
-        //     textStyle: {
-        //       color: '#ffffff',
-        //       fontSize: '16',
-        //     }
-        //   },
-        //   //data: ['宁乡市', '岳麓区', '芙蓉区', '天心区', '开福区', '浏阳市', '长沙县', '望城区', '雨花区', '长沙市']
-        //   data:moreOneCaseTypeResult.map(item => {
-        //       return item.deptName
-        //   })
-        // },
-        //   {
-        //   axisTick: 'none',
-        //   axisLine: 'none',
-        //     show: 'false',
-        //   axisLabel: {
-        //     textStyle: {
-        //       color: '#ffffff',
-        //       fontSize: '16',
-        //     }
-        //   },
-        //   //data: ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1']
-        //   data:moreOneCaseTypeResult.map(item =>{
-        //     return item.ranking
-        //   })
-        // },
-        //   {
-        //   //name: '分拨延误TOP 10',
-        //   nameGap: '50',
-        //   nameTextStyle: {
-        //     color: '#ffffff',
-        //     fontSize: '16',
-        //   },
-        //   axisLine: {
-        //     lineStyle: {
-        //       color: 'rgba(0,0,0,0)'
-        //     }
-        //   },
-        //   data: [],
-        // }],
-        // series: [{
-        //   name: '条',
-        //   type: 'bar',
-        //   yAxisIndex: 0,
-        //   //data: [4, 13, 25, 29, 38, 44, 50, 52, 60, 72],
-        //   data:moreOneCaseTypeResult.map(item =>{
-        //      return item.count
-        //   }),
-        //   label: {
-        //     normal: {
-        //       show: true,
-        //       position: 'right',
-        //       textStyle: {
-        //         color: '#ffffff',
-        //         fontSize: '16',
-        //       }
-        //     }
-        //   },
-        //   barWidth: 12,
-        //   itemStyle: {
-        //     normal: {
-        //       color: function(params) {
-        //         var num = myColor.length;
-        //         return myColor[params.dataIndex % num]
-        //       },
-        //     }
-        //   },
-        //   z: 2
-        // }, {
-        //   name: '白框',
-        //   type: 'bar',
-        //   yAxisIndex: 1,
-        //   barGap: '-100%',
-        //   //data: [99, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5],
-        //   data:moreOneCaseTypeResult.map(item =>{
-        //      return item.count+9.5
-        //   }),
-        //   barWidth: 20,
-        //   itemStyle: {
-        //     normal: {
-        //       color: '#0e2147',
-        //       barBorderRadius: 5,
-        //     }
-        //   },
-        //   z: 1
-        // }, {
-        //   name: '外框',
-        //   type: 'bar',
-        //   yAxisIndex: 2,
-        //   barGap: '-100%',
-        //   //data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
-        //   data:moreOneCaseTypeResult.map(item =>{
-        //      return item.count+10
-        //   }),
-        //   barWidth: 24,
-        //   itemStyle: {
-        //     normal: {
-        //       color: function(params) {
-        //         var num = myColor.length;
-        //         return myColor[params.dataIndex % num]
-        //       },
-        //       barBorderRadius: 5,
-        //     }
-        //   },
-        //   z: 0
-        // },
-        //   {
-        //     name: '外圆',
-        //     type: 'scatter',
-        //     hoverAnimation: false,
-        //     //data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        //     data:moreOneCaseTypeResult.map(item => {
-        //       return item.count-item.count
-        //     }),
-        //     yAxisIndex: 2,
-        //     symbolSize: 35,
-        //     itemStyle: {
-        //       normal: {
-        //         color: function(params) {
-        //           var num = myColor.length;
-        //           return myColor[params.dataIndex % num]
-        //         },
-        //         opacity: 1,
-        //       }
-        //     },
-        //     z: 2
-        //   }
-        // ]
-
       })
 
     } else {

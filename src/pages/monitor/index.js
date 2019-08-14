@@ -10,6 +10,20 @@ class Monitor extends React.Component {
     this.props.dispatch({
       type: 'monitor/fetch',
     });
+    this.props.dispatch({
+      type: 'appeal/fetch',
+    });
+    this.props.dispatch({
+      type: 'appeal/save',
+      payload: {
+        name: '',
+        deptName: '长沙市',
+        caseName: '',
+        partName: '区县街道',
+        areaName: '区县机关部门',
+        aName: '区县',
+      },
+    });
     this.times = setInterval(() => {
       this.props.dispatch({
         type: 'monitor/fetch',
