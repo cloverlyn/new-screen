@@ -14,7 +14,7 @@ class AreaDept extends React.Component {
           trigger: 'axis'
         },
         legend: {
-          data: ['总工单', '转办办结工单'],
+          data: ['转办工单', '转办办结工单'],
           textStyle: {
             color: '#00eaff',
             fontSize: 18
@@ -70,7 +70,7 @@ class AreaDept extends React.Component {
         ],
         series: [
           {
-            name: '总工单',
+            name: '转办工单',
             type: 'bar',
             itemStyle: {
               color: '#00FFE6'

@@ -28,7 +28,7 @@ function Total(props) {
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           },
-          formatter:"{a}:{c}<br/>{a1}:{c1}%",
+          formatter:"{a}:{c}<br/>{a1}:{c1}",
           rich:{
             a:{
               textStyle:{
@@ -50,7 +50,7 @@ function Total(props) {
           containLabel: true
         },
         legend: {
-          data: ['受理量', '接通率'],
+          data: ['受理量', '转办量'],
           right: 50,
           top:12,
           textStyle: {
@@ -146,7 +146,7 @@ function Total(props) {
           data: handleCount
         },
           {
-            name: '接通率',
+            name: '转办量',
             type: 'bar',
             barWidth: '15%',
             itemStyle: {

@@ -225,7 +225,7 @@ function TimeHandle(props) {
 
       <div className="col-md-6" style={{ float: 'left', overflow: 'hidden' }}>
         <img src={imgUrl} alt={'#'}/>
-        <strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>实时区县办结案件</strong>
+        <strong style={{ color: "#00eaff", 'font-size': '1.6vh' ,marginBottom:'100px'}}>区县办结案件统计</strong>
         <ReactEcharts
           option={options}
           style={{ width: '600px', height: '480px' ,marginTop:'150px'}}
