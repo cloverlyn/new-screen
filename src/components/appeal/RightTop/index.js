@@ -9,7 +9,7 @@ function RightTop(props) {
   
   return (
     <div className={styles.container}>
-      <div className={styles.title} style={{marginBottom:'50px'}}>办理数据</div>
+      <div style={{marginBottom:'50px'}}></div>
       <Charts/>
     </div>
   );

@@ -96,7 +96,7 @@ class LeftTop extends React.Component {
     // const { partName } = this.props;
     return (
       <div className={styles.container}>
-        <div className={styles.title}>在线办结案件</div>
+        <div></div>
         <div className={styles.mainContainer}>
           <div style={{ width: '100%' }}>
             <img src={imgUrl} alt="" />

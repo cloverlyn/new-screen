@@ -143,7 +143,7 @@ function WorkOrder(props) {
                 <strong style={{ color: "#00eaff", fontSize: '1.6vh' }}>工单办理对比</strong>
                 <ReactEcharts
                     option={options}
-                    style={{ width: '600px', height: '380px',marginBottom:'50px'}}
+                    style={{ width: '700px', height: '380px',marginBottom:'50px'}}
                 />
             </div>
         </div>

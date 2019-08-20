@@ -189,7 +189,7 @@ class Map extends React.Component {
         name: '',
         caseName: '',
         partName: '区县街道',
-        areaName: '区县机关部门'
+        areaName: '区县直属部门'
       },
     });
 

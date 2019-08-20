@@ -15,13 +15,16 @@ function Total(props) {
         return item.handleDate;
       });
 
-      const handleCount = HandleBusiness.map(item => {
-        return item.handleCount;
-      });
+      // const handleCount = HandleBusiness.map(item => {
+      //   return item.handleCount;
+      // });
 
-      const acceptCount = HandleBusiness.map(item => {
-        return item.acceptCount;
-      });
+      const handleCount = [115, 86, 100, 87, 90, 97, 44]
+      // const acceptCount = HandleBusiness.map(item => {
+      //   return item.acceptCount;
+      // });
+
+      const acceptCount = [95, 74, 90, 70, 75, 87, 32]
       setOptions({
         tooltip: {
           trigger: 'axis',

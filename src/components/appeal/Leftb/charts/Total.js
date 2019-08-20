@@ -30,10 +30,10 @@ function Total(props) {
           type: 'pie',
           radius: '48%',
           center: ['50%', '50%'],
-          startAngle:290,
+          startAngle: 290,
           color: ['#f33f39', '#18e7d8', '#2e91ff', '#eebd10', '#00faff', '#de1f87', '#505de8'], //'#FBFE27','rgb(11,228,96)','#FE5050'
-          data:blueSkyCount.map(item =>{
-            return{
+          data: blueSkyCount.map(item => {
+            return {
               value: item.value,
               name: item.name,
             }
@@ -88,7 +88,7 @@ function Total(props) {
 
   useEffect(() => {
 
-    if (businessCount) {
+    if (moreOneCaseTypeResult) {
 
       setOptions2({
         tooltip: {
@@ -101,16 +101,63 @@ function Total(props) {
             type: 'pie',
             radius: '48%',
             center: ['50%', '50%'],
-            startAngle:195,
+            startAngle: 195,
             label: {
               show: true,
               formatter: '{b}: \n {d}%',
-              textStyle:{
-                fontSize:15
+              textStyle: {
+                fontSize: 15
               }
             },
-            data:businessCount.map(item =>{
-              return{
+            data: moreOneCaseTypeResult.map(item => {
+              return {
+                value: item.count,
+                name: item.deptName,
+              };
+            }),
+            itemStyle: {
+
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ],
+        color: ['#f34238', '#17f5b8', '#2e91ff', '#f1cf18', '#00faff', '#8b32bf', '#4855e5', "#FFE400", "#F76F01", "#01A4F7", "#c07dff"]
+      });
+    }
+    else {
+      setOptions2({})
+    }
+
+  }, [moreOneCaseTypeResult]);
+
+  useEffect(() => {
+    if (businessCount) {
+
+      setOptions3({
+        tooltip: {
+          trigger: 'item',
+          formatter: "{b} : <br />{c} ({d}%)"
+        },
+
+        series: [
+          {
+            type: 'pie',
+            radius: '48%',
+            center: ['50%', '50%'],
+            startAngle: 195,
+            label: {
+              show: true,
+              formatter: '{b}: \n {d}%',
+              textStyle: {
+                fontSize: 14
+              }
+            },
+            data: businessCount.map(item => {
+              return {
                 value: item.value,
                 name: item.name,
               };
@@ -125,154 +172,32 @@ function Total(props) {
             }
           }
         ],
-        color: ['#f34238','#17f5b8','#2e91ff','#f1cf18','#00faff','#8b32bf','#4855e5']
-      });
-    }
-    else {
-      setOptions2({})
-    }
-
-  }, [businessCount]);
-
-  useEffect(() => {
-    if (moreOneCaseTypeResult) {
-      var maxOne = 0;
-      moreOneCaseTypeResult.map((item , index) => {
-        if(index === 0)
-        maxOne = item.count;
-      });
-
-      var xData = [];
-      var length = moreOneCaseTypeResult.length;
-      for(var i=0;i<length;i++)
-      {
-          xData.push(maxOne);
-      }
-
-      setOptions3({
-        grid: {
-          show:'true',
-          borderWidth:'0',
-          height:"80%",
-          width:"65%",
-          //x:"12%",
-          left:"20%",
-          right:"30px"
-          // y:"20%",
-        },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          },
-          formatter: "{b0}: {c0}"
-        },
-        xAxis: {
-          show: false,                //是否显示x轴
-          type: 'value'
-        },
-        yAxis: {
-          type: 'category',
-          inverse:true,               //让y轴数据逆向
-          axisLabel: {
-            show: true,
-            textStyle: {
-              color: '#666', //y轴字体颜色
-              fontSize: 18
-            },
-            formatter: function(value, index) {
-              return [
-                '{lg|'+ '}' + '{title|' + value + '} '
-              ].join('\n');
-            },
-            //定义富文本标签
-            rich: {
-              title: {
-                color: '#fff',
-                fontWeight: 'lighter',
-                fontSize: 18,
-                // borderWidth: 1,
-                // borderColor: '#08c'
-                // textareaBorderColor: '#08c',
-              }
-            }
-          },
-          splitLine: {show: false},   //横向的线
-          axisTick: {show: false},    //y轴的端点
-          axisLine: {show: false},    //y轴的线
-          //data: ['闽DZ0175','闽DZ6027','闽D83876','闽DZ1377','闽DZ8825']
-            data:moreOneCaseTypeResult.map(item => {
-                return item.deptName
-            })
-        },
-        series: [
-          {
-            name: '数据内框',
-            type: 'bar',
-            itemStyle: {
-              normal: {
-                barBorderRadius: 30,
-                color: '#00b5eb',
-              }
-            },
-            label: {
-              normal: {
-                show: true,
-                position: 'right',
-                textStyle: {
-                  color: '#fff',
-                  fontSize: 16,
-                  fontStyle: 'bold',
-                }
-              }
-            },
-            barWidth: 30,
-            //data: [11, 33, 77, 39, 55]
-            data: moreOneCaseTypeResult.map(item => {
-              return item.count
-            })
-          },
-          {
-            name: '外框',
-            type: 'bar',
-            itemStyle: {
-              normal: {
-                barBorderRadius: 30,
-                color: 'rgba(255, 255, 255, 0.14)' //rgba设置透明度0.14
-              }
-            },
-            barGap: '-100%',
-            z: 0,
-            barWidth: 30,
-            //data: [100, 100, 100, 100, 100]
-            data: xData
-          }
-        ]
+        color: ["#FFE400", "#F76F01", "#01A4F7", "#c07dff"]
       })
 
     } else {
       setOptions3({});
     }
 
-  }, [moreOneCaseTypeResult]);
+  }, [businessCount]);
   return (
     <div style={{ width: '100%' }}>
 
 
       <div id={'chart'} className="col-md-4" style={{ marginTop: '60px', width: '32.5%', float: 'left', overflow: 'hidden' }}>
-        <img src={imgUrl} alt={'#'} style={{marginLeft:'80px'}}/>
-        <strong style={{ color: "#00eaff", marginTop: '50px',fontSize: '1.6vh' }}>营商环境类</strong>
+        <img src={imgUrl} alt={'#'} style={{ marginLeft: '80px' }} />
+        <strong style={{ color: "#00eaff", marginTop: '50px', fontSize: '1.6vh' }}>营商环境类</strong>
         <ReactEcharts
-          option={options2}
-          style={{ width: '390px', height: '500px'}}
+          option={options3}
+          style={{ width: '390px', height: '500px' }}
         />
 
         <div>
           {
-            businessCount.map((item , index) => {
-              if(index === 0)
+            businessCount.map((item, index) => {
+              if (index === 0)
                 return (
-                  <div style={{ fontSize: '1.6em' , fontWeight: 'bold' , color: '#06e4f9' , marginLeft:'100px'}}>
+                  <div style={{ fontSize: '1.6em', fontWeight: 'bold', color: '#06e4f9', marginLeft: '100px' }}>
                     案件总数：{item.total}
                   </div>
                 );
@@ -284,19 +209,19 @@ function Total(props) {
 
 
       <div id={'chart'} className="col-md-4" style={{ marginTop: '60px', width: '32.5%', float: 'left', overflow: 'hidden' }}>
-        <img src={imgUrl} alt={'#'} style={{marginLeft:'100px'}}/>
+        <img src={imgUrl} alt={'#'} style={{ marginLeft: '100px' }} />
         <strong style={{ color: "#00eaff", marginTop: '30px', fontSize: '1.6vh' }}>蓝天保卫战</strong>
         <ReactEcharts
           option={options}
-          style={{ width: '400px', height: '500px'  }}
+          style={{ width: '400px', height: '500px'}}
         />
 
         <div>
           {
-            blueSkyCount.map((item , index) => {
-              if(index === 0)
+            blueSkyCount.map((item, index) => {
+              if (index === 0)
                 return (
-                  <div style={{ fontSize: '1.6em' , fontWeight: 'bold' , color: '#06e4f9' , marginLeft:'80px'}}>
+                  <div style={{ fontSize: '1.6em', fontWeight: 'bold', color: '#06e4f9', marginLeft: '80px' }}>
                     案件总数：{item.total}
                   </div>
                 );
@@ -306,20 +231,33 @@ function Total(props) {
 
       </div>
 
-      
+
       <div id={'chart'} className="col-md-4" style={{ marginTop: '60px', width: '35%', float: 'left', overflow: 'hidden' }}>
-        <img src={imgUrl} alt={'#'} style={{marginLeft:'100px'}}/>
+        <img src={imgUrl} alt={'#'} style={{ marginLeft: '100px' }} />
         <strong style={{ color: "#00eaff", marginTop: '30px', fontSize: '1.6vh' }}>一件事一次办</strong>
         <ReactEcharts
-          option={options3}
-          style={{ width: '450px', height: '500px' , marginTop: '100px'}}
+          option={options2}
+          style={{ width: '400px', height: '500px' }}
         />
+
+        <div>
+          {
+            moreOneCaseTypeResult.map((item, index) => {
+              if (index === 0)
+                return (
+                  <div style={{ fontSize: '1.6em', fontWeight: 'bold', color: '#06e4f9', marginLeft: '100px' }}>
+                    案件总数：{item.total}
+                  </div>
+                );
+            })
+          }
+        </div>
       </div>
 
     </div>
   );
 
-  
+
 }
 
 export default connect(({ appeal }) => ({
