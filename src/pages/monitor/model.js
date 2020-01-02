@@ -124,7 +124,7 @@ export default {
         put({ type: 'handleAdviceHandleDept'}),
         put({ type: 'handleAdviceHandleDept1'}),
         put({ type: 'handleCaseTotal'}),
-        
+
       ]);
     },
     * handleHotEvent(_, { all, call, put }) {
@@ -136,13 +136,13 @@ export default {
       const tempHotEvent = res.hotEvent.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
       const tempCity = res.cityEventByType.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.name],
+          name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
         };
       });
       yield put({
@@ -176,7 +176,7 @@ export default {
       const tempHotEvent1 = res.hotEvent1.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
       yield put({
@@ -253,10 +253,10 @@ export default {
       const tempMess = res.messageLib.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
-     
+
       yield put({
         type: 'save',
         payload: {
@@ -273,7 +273,7 @@ export default {
       const tempAdviceHandle = res.AdviceHandleDept.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.deptName],
+          name: firstDataMap[item.deptName] ? firstDataMap[item.deptName] : item.deptName,
         };
       });
       yield put({
@@ -292,7 +292,7 @@ export default {
       const tempAdviceHandle1 = res.AdviceHandleDept1.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.deptName],
+          name: firstDataMap[item.deptName] ? firstDataMap[item.deptName] : item.deptName,
         };
       });
       yield put({
@@ -311,7 +311,7 @@ export default {
       const tempCaseTotal = res.CaseTotal.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.deptName],
+          name: firstDataMap[item.deptName] ? firstDataMap[item.deptName] : item.deptName,
         };
       });
       yield put({
@@ -330,7 +330,7 @@ export default {
       const tempSati = res.Satisfaction.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
       yield put({
@@ -339,8 +339,8 @@ export default {
           Satisfaction: tempSati,
         },
       });
-      
-    
+
+
     },
 
     * handleWorkOrder(_, { all, call, put }) {
@@ -351,7 +351,7 @@ export default {
       const tempWorkOrder = res.WorkOrder.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
       yield put({
@@ -360,8 +360,8 @@ export default {
           WorkOrder: tempWorkOrder,
         },
       });
-      
-    
+
+
     },
 
     * handleCallType(_, { all, call, put }) {
@@ -372,7 +372,7 @@ export default {
       const tempCallType = res.CallType.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
       yield put({
@@ -381,8 +381,8 @@ export default {
           CallType: tempCallType,
         },
       });
-      
-    
+
+
     },
 
     * handleHandleBusiness(_, { all, call, put }) {
@@ -393,7 +393,7 @@ export default {
       const tempHandleBusiness = res.HandleBusiness.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
       yield put({
@@ -433,13 +433,13 @@ export default {
     * handleDistributeByMonth(_, { all, call, put }) {
       const res = yield all({
         DistributeByMonth: call(fetchDistributeByMonth),
-       
+
       });
 
       const tempDistributeByMonth = res.DistributeByMonth.data[0].map(item => {
         return {
           ...item,
-          name: firstDataMap[item.name],
+          name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
         };
       });
       yield put({
@@ -448,7 +448,7 @@ export default {
           DistributeByMonth: tempDistributeByMonth,
         },
       });
-      
+
     },
     * handleDistributeLastMonth(_, { all, call, put }) {
       const res = yield all({
@@ -458,7 +458,7 @@ export default {
       const tempDistributeLastMonth = res.DistributeLastMonth.data[1].map(item => {
         return {
           ...item,
-          name: firstDataMap[item.name],
+          name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
         };
       });
       yield put({
@@ -471,12 +471,12 @@ export default {
 
 
     * handleArea(_, { all, call, put, select }) {
-      const { deptId } = yield select(state => state.monitor);     
+      const { deptId } = yield select(state => state.monitor);
       const update = yield call(fetchUpdate,deptId);
       const tempCity = update.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.name],
+          name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
         };
     });
       yield put({
@@ -492,7 +492,7 @@ export default {
       const tempCity = update.data.map(item => {
           return {
             ...item,
-            name: firstDataMap[item.name],
+            name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
           };
       });
       yield put({

@@ -2,9 +2,9 @@ import React from 'react';
 import echarts from 'echarts/lib/echarts';
 import ReactEcharts from 'echarts-for-react';
 import { connect } from 'dva';
-import point1 from '@/assets/point1.png'
+//import point1 from '@/assets/point1.png'
 //import point2 from '@/assets/point2.png'
-import point3 from '@/assets/point3.png'
+//import point3 from '@/assets/point3.png'
 //import point4 from '@/assets/point4.png'
 import City from './CityEventCount'
 import styles from './../index.scss'

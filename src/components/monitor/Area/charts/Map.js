@@ -144,6 +144,7 @@ class Map extends React.Component {
       if (this.props.inTimeHandle[i].deptName === e.name)
         id = this.props.inTimeHandle[i].deptId;
     }
+
     this.props.dispatch({
       type: 'monitor/handleUpdate',
       payload: {
@@ -159,6 +160,7 @@ class Map extends React.Component {
     this.props.dispatch({
       type: 'monitor/fetch',
     });
+
   };
 
   render() {

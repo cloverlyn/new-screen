@@ -95,7 +95,7 @@ export default {
       const tempCaseTypeStatistics = res.CaseTypeStatistics.data.map((item) => {
         return {
           ...item,
-          caseTypeName: firstDataMap[item.caseTypeName],
+          caseTypeName: firstDataMap[item.caseTypeName] ? firstDataMap[item.caseTypeName] : item.caseTypeName,
         };
       });
 
@@ -170,25 +170,25 @@ export default {
       const tempBlue = res.BlueSkyCount.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.name],
+          name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
         };
       });
       const tempBusiness = res.BusinessCount.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.name],
+          name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
         };
       });
       const tempAdviceHandle = res.AdviceHandleDept.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.deptName],
+          name: firstDataMap[item.deptName] ? firstDataMap[item.deptName] : item.deptName,
         };
       });
       const tempCity = res.cityEventByType.data.map(item => {
         return {
           ...item,
-          name: firstDataMap[item.name],
+          name: firstDataMap[item.name] ? firstDataMap[item.name] : item.name,
         };
       });
 
@@ -215,7 +215,7 @@ export default {
       const tempDis = res.distributeEvent.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
 
@@ -291,7 +291,7 @@ export default {
       const tempTimeHandle = res.TimeHandle.data.map(item => {
         return {
           ...item,
-          caseName: firstDataMap[item.caseName],
+          caseName: firstDataMap[item.caseName] ? firstDataMap[item.caseName] : item.caseName,
         };
       });
 
@@ -299,7 +299,7 @@ export default {
         type: 'save',
         payload: {
           caseTypeStatisticsDetail: caseTypeDetail.data,
-          TimeHandle: tempTimeHandle, 
+          TimeHandle: tempTimeHandle,
         },
       });
     },
@@ -325,7 +325,7 @@ export default {
       const tempAreaDeptDetail = areaDeptDetail.data.map(item => {
         return {
           ...item,
-          caseTypeName: firstDataMap[item.caseTypeName],
+          caseTypeName: firstDataMap[item.caseTypeName] ? firstDataMap[item.caseTypeName] : item.caseTypeName,
         };
       });
 
@@ -345,7 +345,7 @@ export default {
       const tempAreaDeptDetail = res.data.map(item => {
         return {
           ...item,
-          caseTypeName: firstDataMap[item.caseTypeName],
+          caseTypeName: firstDataMap[item.caseTypeName] ? firstDataMap[item.caseTypeName] : item.caseTypeName,
         };
       });
 
@@ -367,7 +367,7 @@ export default {
       const tempAreaStreetDetail = areaStreetDetail.data.map(item => {
         return {
           ...item,
-          caseTypeName: firstDataMap[item.caseTypeName],
+          caseTypeName: firstDataMap[item.caseTypeName] ? firstDataMap[item.caseTypeName] : item.caseTypeName,
         };
       });
 
@@ -387,7 +387,7 @@ export default {
       const tempAreaStreetDetail = res.data.map(item => {
         return {
           ...item,
-          caseTypeName: firstDataMap[item.caseTypeName],
+          caseTypeName: firstDataMap[item.caseTypeName] ? firstDataMap[item.caseTypeName] : item.caseTypeName,
         };
       });
 

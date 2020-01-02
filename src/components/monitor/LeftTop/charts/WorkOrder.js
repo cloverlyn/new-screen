@@ -42,12 +42,12 @@ function WorkOrder(props) {
                   },
                 tooltip: {
                     trigger: 'axis',
-                    
+
                 },
-                
+
                 xAxis: [{
-        
-      
+
+
                     axisLine: {
                         lineStyle: {
                             color: '#00ebff'
@@ -63,12 +63,12 @@ function WorkOrder(props) {
                           fontSize:16
                         }
                     },
-                    
+
                     data: xData,
                 }],
                 yAxis: [{
-            
-                   
+
+
                     nameGap: 40,
                     nameTextStyle: {
                         color: '#00ebff'
@@ -83,10 +83,10 @@ function WorkOrder(props) {
                     },
                     axisLabel: {
                       textStyle: {
-                        fontSize:16
+                        fontSize:15
                       }
                     }
-                    
+
                 }],
                 series: [{
                     name: '在线办结工单',
@@ -143,7 +143,7 @@ function WorkOrder(props) {
                 <strong style={{ color: "#00eaff", fontSize: '1.6vh' }}>工单办理对比</strong>
                 <ReactEcharts
                     option={options}
-                    style={{ width: '600px', height: '380px',marginBottom:'50px'}}
+                    style={{ width: '620px', height: '380px',marginBottom:'50px'}}
                 />
             </div>
         </div>

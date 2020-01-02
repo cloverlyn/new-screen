@@ -177,7 +177,7 @@ function Total(props) {
           axisLabel: {
             show: true,
             textStyle: {
-              color: '#666', //y轴字体颜色
+              color: '#00eaff', //y轴字体颜色
               fontSize: 18
             },
             formatter: function(value, index) {
